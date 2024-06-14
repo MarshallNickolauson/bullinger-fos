@@ -1,5 +1,3 @@
-Figures Involving Omission
-|. AFFECTING WORDS
 Ellipsis
 El-lip’-sis. This is the Greek word ἔλλειψις, a leaving in, from ἐν (en)
 in, and λείπειν (leipein) to leave.
@@ -6293,7 +6291,7 @@ that no prophecy of the Scripture came of [the prophet’s, or of its own]
 unfolding; for prophecy came not in old time by the will of man; but the
 holy men of God spake as they were moved by the Holy Ghost.”
 
-Or taking the last clause as in the R.V. [Note: The Revised
+Or taking the last clause as in the R.V. [Note: The Revised,
 Version, 1881.] , “But holy men spake from God, [not from
 themselves], moved by the Holy Ghost.”
 
@@ -6301,7 +6299,7 @@ The whole scope of this passage is, not the interpretation of
 Scripture, but its origin: it does not speak of what the Scripture means,
 but of whence it comes.
 
-Zeugma: or, Unequal Yoke
+Zeugma; or, Unequal Yoke
 Zeug’-ma. Greek ζεῦγμα, a yoke; from ζεύγνυµι (zeugnumi), to join or
 yoke together.
 
@@ -11673,8 +11671,8 @@ Psa. 47:6.-
 Sing praises unto our King, sing praises.”
 Rom. 14:8.-“For whether we live, to the Lord we live; and whether
 we die, to the Lord we die.”
-Anadiplosis; or, Like Sentence Endings and
-Beginnings
+Anadiplosis; or, Like Sentence Endings and Beginnings
+
 The Repetition of the same Word or Words at the end of one
 Sentence and at the beginning of another
 An‘-a-di-plo-sis. Greek, ἀναδίπλωσις, ava (ana), again, and διπλοῦν
@@ -20575,7 +20573,7 @@ The name MEILIGMATA is given to the words so used, from
 
 Rom. 3:5.-“I speak as a man.”
 2Co. 11:23.-“I speak as a fool.”
-Anrresis; or, Detraction
+Anoeresis; or, Detraction
 A Parenthetic Addition by way of Detraction.
 (Parenthetic Tapein?sis)
 An oe’-re-sis (ἀναίρεσις), from ava (ana), up, and αἱρέω (hair?), to
@@ -20639,44 +20637,6 @@ allusion to it.
 Heb. 11:32.-“And what shall | more say? for the time would fail me to
 tell of Gedeon and of Barak,” etc., and then proceeds to allude briefly
 to them all in verses 33-38.
-Proslepsis; or, Assumption
-Addition (full) of what is professed to be ignored
-Pros’-leeps’-is (πρόσληψις), a taking or assuming besides. From
-πρός (pros), to, toward, or beside, and λῆψις (leepsis), a taking, from
-λαμβάνω (lamban?), to take-
-
-By the Latins it was called ASSUMPTIO, an assuming, or taking
-to, and CIRCUMDUCTIO, a leading round.
-
-This name is given to the preceding figure of Paraleipsis, when it is
-expanded beyond its proper limits; and the speaker or writer, after
-having professed to omit it, proceeds actually to add and describe the
-particulars.
-
-Apophasis; or, Insinuation
-Addition of Insinuation (implied) by way of Reasoning
-A-poph’-a-sis (ἁπόφασις), denial, negation, from ἁποφάναι
-(apophanai), to speak off, and this from ἁπό (apo), off, and φάναι
-(phanai), to speak or say-
-Proslepsis; or, Assumption
-Addition (full) of what is professed to be ignored
-Pros’-leeps’-is (πρόσληψις), a taking or assuming besides. From
-πρός (pros), to, toward, or beside, and λῆψις (leepsis), a taking, from
-λαμβάνω (lamban?), to take-
-
-By the Latins it was called ASSUMPTIO, an assuming, or taking
-to, and CIRCUMDUCTIO, a leading round.
-
-This name is given to the preceding figure of Paraleipsis, when it is
-expanded beyond its proper limits; and the speaker or writer, after
-having professed to omit it, proceeds actually to add and describe the
-particulars.
-
-Apophasis; or, Insinuation
-Addition of Insinuation (implied) by way of Reasoning
-A-poph’-a-sis (ἁπόφασις), denial, negation, from ἁποφάναι
-(apophanai), to speak off, and this from ἁπό (apo), off, and φάναι
-(phanai), to speak or say-
 Proslepsis; or, Assumption
 Addition (full) of what is professed to be ignored
 Pros’-leeps’-is (πρόσληψις), a taking or assuming besides. From
@@ -29535,9 +29495,7 @@ give unnecessary offence.
 
 There are many other Euphemisms which require no explanation,
 and which the student will now readily note and mark for himself.
-Ampliatio; or, Adjournment: /.е., an Old Name for a
-
-New Thing
+Ampliatio; or, Adjournment: i.е., an Old Name for a New Thing
 
 A retaining of an old Name after the reason for it is passed away
 Am -pli-a’-ti-o is a figure discovered and named by the Latins. It is
@@ -29615,8 +29573,8 @@ So Act. 1:21-22.
 and who were then or are now on their way to destruction.
 Heb. 11:31 and Jam. 2:25.-Rahab is still called “the harlot.” The term
 remains as an Epithet. But see under Catachresis.
-Antiphrasis; or, Permutation: i.e., A New Name for
-the Old Thing
+Antiphrasis; or, Permutation: i.e., A New Name for the Old Thing
+
 A new and opposite Name for a thing after the original Meaning has
 ceased
 
@@ -32957,7 +32915,7 @@ to symbols. The subject would form a work by itself; and, indeed,
 many works have been written upon it. We can only repeat our caution
 as to their use.
 
-nigma; or, Dark Saying
+Nigma; or, Dark Saying
 A. Truth expressed in obscure Language
 E-nig’-ma. Greek, αἴνιγμα (ai-nig-ma), from αἰνίσσεσθαι (ainissesthai),
 to tell a strange tale, then to speak darkly or in riddles. Hence an
@@ -34628,7 +34586,7 @@ Buddhist, a Mahommedan, a Roman Catholic, or a votary of any other
 religious system; but it does not follow that such an one is “in Christ,”
 and therefore a. Christian.
 
-Eironeia; or, ΙΓΟΠΥ
+Eironeia; or, IRONY
 The Expression of Thought in a form that naturally conveys its
 opposite
 Г-гоп-у. Greek, εἰρωνεία (eiréneia), dissimulation. Hence, a
@@ -39401,7 +39359,7 @@ may be found in Isa. 22:4; Isa. 49:15. Jer. 9:1-2; Jer. 23:9-10; Jer.
 31:20. Hos. 11:8-9. Mar. 3:5; Mar. 7:34; Mar. 10:14; Mar. 10:21. Luk.
 19:41-42. Act. 7:54; Act. 7:57. 2Co. 2:4. Gal. 4:19-20. 2Ti. 1:16-18.
 
-Aste|smos; or, Urbanity
+Asteismos; or, Urbanity
 An Expression of Feeling by way of Politeness
 As-te-is’-mos. Greek, ἀστεϊσμός, refined or polite talk; clever, witty, or
 pleasing language; graceful or happy turn of phrase.
@@ -39501,7 +39459,7 @@ put into the form of exhortation.
 
 The Scriptures abound with examples, which the reader may
 easily find and note for himself.
-Conismos; or, Wishing
+Oeonismos; or, Wishing
 An Expression of Feeling by way of wishing or hoping for a thing
 @’-6-nis’-mos. Greek, οἰωνισμός, a divining by the flight of birds,
 divination. Then, because these diviners generally saw what they
@@ -40866,7 +40824,7 @@ as to her condition as “a dog of the Gentiles,” and said, “Truth, Lord:”
 and received the blessing which had been determined for her.
 Mat. 21:29 is sometimes given as an example; but this was a real
 refusal, altered by after repentance.
-tiologia; or, Cause Shown
+Tiologia; or, Cause Shown
 The rendering a Reason for what is said or done
 Ae -ti-o-log‘-ia (Aetiology). Greek Αἰτιολογία, rendering a reason, from
 aitia (aitia), a cause, and λόγος (logos), a description.

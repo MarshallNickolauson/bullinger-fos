@@ -1,0 +1,35 @@
+106
+
+Antimereia: or, Exchange of Parts of Speech
+
+The Exchange of one part of Speech for another
+
+Ап -й-те ‘-rei-a, from ἀν ή (anti), over against or instead of, and µέρεια
+(mereia) (for µερός), a part. It means that one part of speech is used
+instead of another:-as a noun for a verb or a verb for a noun, etc.
+The following are the several kinds of Antimereia:-
+ANTIMEREIA. Exchange of Parts of Speech.
+I. Of the Verb.
+1. — Infinitive for Noun.
+2. Participle (active) for Noun.
+3. Participle (passive) for Adjective.
+II. Of the Adverb.
+1. Adverb for Noun.
+2. Adverb for Adjective.
+III. Of the Adjective.
+1. Adjective for Adverb.
+2. Adjective for Noun.
+IV. Of the Noun.
+
+1. Noun for Verb.
+2. Noun for Adverb.
+3. Noun for Adjective.
+4. Noun (repeated) for Adjective (Epizeuxis).
+5. Noun (in regimen) for Adjective.
+6. Noun (governing) for Adjective (Hypallage).
+7. The former of two (both in regimen) for Adjective.
+8. The latter of two (both in regimen) for Adjective.
+9. One of two in same case for Adjective (Hendiadys).
+10. Noun (in regimen) for Superlative Adjective.
+
+HYPALLAGE. Interchange. The Antimereia of the governing Noun.

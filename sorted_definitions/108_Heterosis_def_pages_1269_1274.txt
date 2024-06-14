@@ -1,0 +1,67 @@
+108
+
+Heterosis; or, Exchange of Accidence
+
+Exchange of one Voice, Mood, Tense, Person, Number, Degree, or
+Gender, for another
+
+Hetr-e-rqpr-sis, ἕτερος (heteros), another, different. It 15 the name given
+to that form of Enallage which consists of an exchange, not of actual
+
+parts of speech, but of the accidence of a part of speech.
+
+It includes an exchange of one Form of the Verb for another (e.g.,
+intransitive for transitive); one Mood or Tense for another; one Person
+for another; one Degree of comparison for another; one Number or
+Gender for another.
+
+When the exchange is of one Case for another, it has a separate
+name-Antiptqsis (see above), and when the exchange is of one Part
+of Speech for another, it is called Antimereia (see above).
+
+The following are the various forms of Heterosis.-
+
+HETEROSIS.
+I. Of FORMS and VOICES.
+1. Intransitive for Transitive.
+2. Active for Passive.
+3. Middle for Passive.
+II. Of Moods.
+1. Indicative for Subjunctive.
+2. Subjunctive for Indicative.
+3. Imperative for Indicative.
+4. Imperative for Subjunctive.
+5. Infinitive for Indicative.
+6. Infinitive for Imperative.
+III. Of Tenses.
+1. Past for Present.
+2. Past for Future.
+3. Aorist (Indefinite) for Past.
+4. Aorist (Indefinite) for Present.
+5. Present for Past.
+6. Present for Future.
+7. Present for Paulo post futurum (i.e., a little after [Future).
+8. Future for Past.
+9. Future for Present.
+10. Future for Imperative.
+IV. Of Persons.
+1. First Person for Third.
+2. Second for Third.
+3. Third for First or Second.
+4. Plural for Singular.
+5. Singular for Plural.
+V. Of Adjectives (Degree) and Adverbs.
+1. Positive for Comparative.
+2. Positive for Superlative.
+3. Comparative for Positive.
+4. Comparative for Superlative.
+5. Superlative for Comparative.
+VI. Of Nouns (Number), Adjectives, and Pronouns.
+1. Singular for Plural.
+2. Plural for Singular.
+3. Plural for Indefinite Number or one of many.
+VIΙ. Of Gender.
+1. Masculine for Feminine.
+2. Masculine for Neuter.
+3. Feminine for Neuter.
+4. Neuter for Masculine or Feminine.
