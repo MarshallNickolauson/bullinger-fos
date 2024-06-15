@@ -2,7 +2,6 @@ from pathlib import Path
 from PIL import Image
 import pytesseract
 import re
-import subprocess
 
 def extract_text(figure_of_speech, definition_number, start_page, end_page):
     image_dir = r'C:\Users\Marshall\Desktop\Coding\Python\bullinger-fos-app\pages'
@@ -13,8 +12,11 @@ def extract_text(figure_of_speech, definition_number, start_page, end_page):
     output_file_path = Path(output_folder) / f'{definition_number}_{figure_of_speech}_usage_content_pages_{start_page}_{end_page}.txt'
     custom_config = r'--oem 3 --psm 6'
 
+    print(f"Extracting {figure_of_speech} pg. {start_page} - {end_page}...")
+
     with open(output_file_path, 'w', encoding='utf-8') as text_file:
         for page_num in range(start_page, end_page + 1):
+            print(f'\rExtracting page {page_num}', end='')
             image_path = Path(image_dir) / f'page_{page_num}.png'
             image = Image.open(image_path)
             text = pytesseract.image_to_string(image, lang='eng+ell+rus', config=custom_config)
@@ -41,7 +43,6 @@ def get_all_definitions(directory):
 if __name__ == "__main__":
     sorted_definitions_dir = r'C:\Users\Marshall\Desktop\Coding\Python\bullinger-fos-app\sorted_definitions'
     definitions = get_all_definitions(sorted_definitions_dir)
-    print(definitions)
     
     while True:
         figure_of_speech = input("\nEnter FoS Name: ").strip().lower()
@@ -74,9 +75,6 @@ if __name__ == "__main__":
                         break
             else:
                 print(f"\nNo next definition found for '{figure_of_speech}'.")
-            
-            
-            
             
             start_page = input("Enter the starting page number: ").strip()
             if not start_page.isdigit():
