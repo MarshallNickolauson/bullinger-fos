@@ -1,26 +1,3 @@
-2. Adjective for Noun.
-IV. Of the Noun.
-
-1. Noun for Verb.
-
-2. Noun for Adverb.
-
-3. Noun for Adjective.
-
-4. Noun (repeated) for Adjective (Epizeuxis).
-
-5. Noun (in regimen) for Adjective.
-
-6. Noun (governing) for Adjective (Hypallage).
-
-7. The former of two (both in regimen) for Adjective.
-
-8. The latter of two (both in regimen) for Adjective.
-
-9. One of two in same case for Adjective (Hendiadys).
-
-10. Noun (in regimen) for Superlative Adjective.
-HYPALLAGE. Interchange. The Antimereia of the governing Noun.
 |. Antimereia of the Verb
 
 1. The Infinitive for a Noun
@@ -718,7 +695,3 @@ King of Kings, Holy of Holies, it is put instead of, and to emphasise,
 the superlative degree of the adjective. As this is a species of
 Polyptoton, we have put the examples under that figure (q.v. [Νοίε:
 Which see_] ).
-
-Antiptosis; or, Exchange of Cases
-
-Exchange of one case for another

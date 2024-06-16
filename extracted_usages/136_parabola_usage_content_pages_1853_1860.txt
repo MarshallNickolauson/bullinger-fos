@@ -1,18 +1,3 @@
-Parabola; or, Parable: i.e., Continued Simile
-Comparison by continued Resemblance
-Par-ab’-o-la. Greek, παραβολή (pa-rab’-o-lee), a placing beside for
-the purpose of comparison, from παρά (para), beside, and βάλλειν
-(ballein), to throw or cast.
-
-The classical use of the word was for one of the subdivisions of
-παράδειγµα (paradeigma), an example, viz., a presentation of an
-analogous case by way of illustration.
-
-In the LXX. [Note: XX. The Septuagint Version (325 Б.с.).] it
-occurs about thirty times as the translation of 22? (mahshal), and of
-no other word: and, if we look at some of the sayings to which the
-word “parable” is applied, the meaning which was attached to it will be
-clearly seen.
 1Sa. 10:12 : We read of “the proverb,” “Is Saul also among the
 prophets?” So 1Sa. 24:14 (13): Of “the proverb of the ancients,”
 “Wickedness proceedeth from the wicked.” Compare Eze. 12:22; Eze.
@@ -109,16 +94,3 @@ Il. Parabola or Parable.
 1. Icon. Simile forming a complete image.
 2. Homeeon. Simile founded on certain points only.
 3. Epagoge. Argument from induction.
-Apologue; or, Fable
-A Fictitious Narrative used for Illustration
-Ap‘-o-logue. Greek, ἀπόλογος, from ἁπό (apo), from, and λόγος
-(logos), speech (from λέγειν, to speak), a story, tale; and especially a
-fable. Latin, FABULA, a fable.
-
-An Apologue (or Fable) differs from a Parable, in that the Parable
-describes what is likely or probable, or at any rate what is believed by
-the hearers as probable, while the Fable is not limited by such
-considerations, and is used of impossiblities, such as trees, or
-animals, and inanimate things talking and acting.
-
-The Fable, therefore, is a fictitious narrative intended to illustrate

@@ -1,22 +1,3 @@
-This figure is common to all languages, but the instances cannot
-readily be translated from one language into another. In some cases
-we have attempted to express the Hebrew or Greek words by the use
-of similar words in English; but this is generally at the sacrifice of exact
-translation. Only by a very free translation of the sentence can the two
-words be thus represented.
-
-Sometimes we have found even this to be impossible: but in each
-case we have given the original words in English characters, so that
-the similarity of sound may be perceived. We have not in each case
-stopped to point the lesson taught by the figure, as it is generally
-sufficiently plain and clear.
-
-Neither have we made any classification of the passages,
-otherwise they might well be divided into those which are connected
-with proper names, or prophetic denunciations, etc. Or we might have
-classified them as (1) synonymous; (2) antithetic; and (3) of varied
-signification.
-
 Gen. 1:2.-“Апа the earth had become tohp1 (Wl) and Бопы (2al).”
 For the lesson taught by this (the second Figure used in the Bible),
 see under Anadiplosis.
@@ -609,19 +590,3 @@ Jam. 5:17.-“With prayer (προσευχῆ, proseuchee) he prayed
 (προσηύξατο, proseeuxato)”: i.e., as in A.V. [Note: The Authorized
 Version, or current Text of our English Bible, 1611.] , “He prayed
 earnestly.” See Polyptoton.
-Parechesls; or, Foreign Paronomasia
-The Repetition of Words similar in Sound, but different in Language
-Par-ee-che -sis. Greek, παρήξησις: from παρά (para), beside, and ἠξή
-(eechee), a sound, a sounding of one word beside another.
-
-Parechesis is a Paronomasia, when the repeated words of similar
-sound are in another tongue.
-
-The examples of Paronomasia which we have given are such only
-in the Hebrew and the Greek, not in the English rendering of them
-There is no figure in the English Translation; except when it may be
-possible to reproduce the similar words in translation (as is done in
-Rom. 10:19, disobedience and obedience, etc.). So far as the English
-is concerned, and as related to it, all the examples of Paronomasia
-are really Parechesis, because they exist in another language and not
-in the translation of it.
