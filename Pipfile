@@ -8,6 +8,10 @@ pyautogui = "*"
 pillow = "*"
 pytesseract = "*"
 easyocr = "*"
+django = "*"
+djangorestframework = "*"
+djoser = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
