@@ -12,6 +12,7 @@ django = "*"
 djangorestframework = "*"
 djoser = "*"
 mysqlclient = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
