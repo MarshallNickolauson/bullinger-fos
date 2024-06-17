@@ -26,16 +26,16 @@ export default function DefinitionDetail({ record }) {
         setIsEditing(!isEditing);
     };
 
-    const handleContentChange = (event) => {
-        setEditableContent(event.target.value);
-    };
-
     const handleBookPositionChange = (event) => {
         setEditableBookPosition(event.target.value);
     };
 
     const handleFigureNameChange = (event) => {
         setEditableFigureName(event.target.value);
+    };
+
+    const handleContentChange = (event) => {
+        setEditableContent(event.target.value);
     };
 
     const handleCustomRulesChange = (event) => {
@@ -87,7 +87,6 @@ export default function DefinitionDetail({ record }) {
         <div className="definition-detail">
             <div className="definition-info">
                 <p>{capitalizeFirstLetter(editableFigureName)}</p>
-                <p><strong>Custom Rules:</strong> {editableCustomRules}</p>
             </div>
             <div className="definition-content">
                 <h3>Content</h3>
@@ -117,7 +116,16 @@ export default function DefinitionDetail({ record }) {
                 )}
             </div>
             <div className='definition-content'>
-                
+                {isEditing ? (
+                    <>
+                        <h3>Custom Rules</h3>
+                        <textarea
+                            className='definition-editable'
+                            value={editableCustomRules}
+                            onChange={handleCustomRulesChange}
+                        />
+                    </>
+                ) : ( <> </> )}
             </div>
         </div>
     );
