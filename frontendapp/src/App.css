@@ -10,22 +10,22 @@
     font-family: Arial, sans-serif;
 }
 
-.definition-detail {
+.figure-detail {
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 5px;
     background-color: #f9f9f9;
-  }
-  
-  .definition-info p {
+}
+
+.figure-info p {
     margin: 5px 0;
-  }
-  
-  .definition-content {
+}
+
+.figure-content {
     margin-top: 20px;
-  }
-  
-  .definition-view {
+}
+
+.figure-view {
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
@@ -35,9 +35,9 @@
     font-family: inherit;
     white-space: pre-wrap;
     word-wrap: break-word;
-  }
-  
-  .definition-editable {
+}
+
+.figure-editable {
     width: 100%;
     padding: 10px;
     margin-top: 16px;
@@ -50,9 +50,9 @@
     resize: none;
     white-space: pre-wrap;
     word-wrap: break-word;
-  }
-  
-  .measure-pre {
+}
+
+.measure-pre {
     white-space: pre-wrap;
     word-wrap: break-word;
     font-size: inherit;
@@ -60,7 +60,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
+}
 
 button {
     margin: 10px;

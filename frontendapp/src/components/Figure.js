@@ -1,26 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '../config/config';
-import FigureDetail from './FigureDetail';
+import DefinitionDetail from './DefinitionDetail';
+import UsageDetail from './UsageDetail';
 
 export default function Definition() {
   const { id } = useParams();
-  const [data, setData] = useState(null);
+  const [definitionData, setDefinitionData] = useState(null);
+  const [usageData, setUsageData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiEndpoint = `${config.apiBaseUrl}/definitions/${id}`;
+    const definitionApiEndpoint = `${config.apiBaseUrl}/definitions/${id}`;
+    const usageApiEndpoint = `${config.apiBaseUrl}/usages/${id}`;
 
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(apiEndpoint);
-        if (!response.ok) {
+        const definitionResponse = await fetch(definitionApiEndpoint);
+        if (!definitionResponse.ok) {
           throw new Error('Network response was not OK');
         }
-        const jsonData = await response.json();
-        setData(jsonData);
+        const definitionJsonData = await definitionResponse.json();
+
+        const usageResponse = await fetch(usageApiEndpoint);
+        if (!usageResponse.ok) {
+          throw new Error('Network response was not OK');
+        }
+        const usageJsonData = await usageResponse.json();
+
+        setDefinitionData(definitionJsonData);
+        setUsageData(usageJsonData);
+        
       } catch (e) {
         setError(e);
       } finally {
@@ -41,7 +53,8 @@ export default function Definition() {
 
   return (
     <>
-        <FigureDetail record={data} />
+        <DefinitionDetail record={definitionData} />
+        <UsageDetail record={usageData} />
     </>
   );
 }
