@@ -1,0 +1,9 @@
+build forward and back buttons
+
+build header and footer
+
+refactor css to be "figure-~~~" to use it with Usages build
+
+build Usage and UsageDetail components
+
+design wireframes for desktop and mobile versions
