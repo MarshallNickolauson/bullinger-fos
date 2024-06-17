@@ -7,3 +7,7 @@ refactor css to be "figure-~~~" to use it with Usages build
 build Usage and UsageDetail components
 
 design wireframes for desktop and mobile versions
+
+Make definitions page a list of just the names in alphabetical order
+
+Add bootstrap and style with that

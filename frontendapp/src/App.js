@@ -1,19 +1,15 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import Definitions from './components/Definitions';
-import Usages from './components/Usages';
-import Definition from './components/Definition';
-import UsageDetail from './components/UsageDetail';
+import Definitions from './components/Figures';
+import Definition from './components/Figure';
 
 function App() {
   return (
     <Router>
       <div className='app-container'>
         <Routes>
-          <Route path='/definitions' element={<Definitions />} />
-          <Route path='/definitions/:id' element={<Definition />} />
-          <Route path='/usages' element={<Usages />} />
-          <Route path='/usages/:id' element={<UsageDetail />} />
+          <Route path='/figures' element={<Definitions />} />
+          <Route path='/figures/:id' element={<Definition />} />
         </Routes>
       </div>
     </Router>

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '../config/config';
-import DefinitionDetail from './DefinitionDetail';
+import FigureDetail from './FigureDetail';
 
 export default function Definition() {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const apiEndpoint = `${config.apiBaseUrl}/definitions/${id}`;
@@ -43,9 +41,7 @@ export default function Definition() {
 
   return (
     <>
-        <h1>Definition Detail</h1>
-
-        <DefinitionDetail record={data} />
+        <FigureDetail record={data} />
     </>
   );
 }

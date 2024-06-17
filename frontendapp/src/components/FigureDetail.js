@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import config from '../config/config'
 
-export default function DefinitionDetail({ record }) {
+export default function FigureDetail({ record }) {
     const id = record['book_position'];
     const [isEditing, setIsEditing] = useState(false);
     const [editableBookPosition, setEditableBookPosition] = useState(record['book_position']);
@@ -11,6 +12,8 @@ export default function DefinitionDetail({ record }) {
 
     const textareaRef = useRef(null);
     const measureRef = useRef(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (isEditing && textareaRef.current && measureRef.current) {
@@ -25,6 +28,20 @@ export default function DefinitionDetail({ record }) {
         }
         setIsEditing(!isEditing);
     };
+
+    const handlePrevClick = () => {
+        const prevId = id - 1;
+        if (prevId >= 1 && prevId <= 201) {
+            navigate(`/figures/${prevId}`)
+        }
+    }
+
+    const handleNextClick = () => {
+        const nextId = id + 1;
+        if (nextId >= 1 && nextId <= 201) {
+            navigate(`/figures/${nextId}`)
+        }
+    }
 
     const handleBookPositionChange = (event) => {
         setEditableBookPosition(event.target.value);
@@ -90,6 +107,12 @@ export default function DefinitionDetail({ record }) {
             </div>
             <div className="definition-content">
                 <h3>Content</h3>
+                <button disabled={id == 1} className={id == 1 ? 'button-disabled' : ''} onClick={handlePrevClick}>
+                    Prev
+                </button>
+                <button disabled={id == 201} className={id == 201 ? 'button-disabled' : ''} onClick={handleNextClick}>
+                    Next
+                </button>
                 <button onClick={handleEditClick}>
                     {isEditing ? 'Save' : 'Edit'}
                 </button>
