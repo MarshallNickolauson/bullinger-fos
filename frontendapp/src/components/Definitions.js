@@ -8,13 +8,12 @@ export default function Definitions() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const apiEndpoint = config.apiBaseUrl + "/definitions";
-        console.log(apiEndpoint)
+        const apiEndpoint = `${config.apiBaseUrl}/definitions`;
 
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(config.apiBaseUrl + "/definitions");
+                const response = await fetch(apiEndpoint);
                 if (!response.ok) {
                     throw new Error('Network response was not OK')
                 }
