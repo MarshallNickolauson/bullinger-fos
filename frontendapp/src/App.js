@@ -1,16 +1,16 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Definitions from './components/Figures';
-import Definition from './components/Figure';
+import FiguresDev from './components/dev/FiguresDev';
+import FigureDev from './components/dev/FigureDev';
+
 
 function App() {
   return (
     <Router>
       <div className='container-xl'>
         <Routes>
-          <Route path='/figures' element={<Definitions />} />
-          <Route path='/figures/:id' element={<Definition />} />
+          <Route path='/dev/figures' element={<FiguresDev />} />
+          <Route path='/dev/figures/:id' element={<FigureDev />} />
         </Routes>
       </div>
     </Router>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import config from '../config/config'
+import config from '../../config/config'
 
-export default function Definitions() {
+export default function FiguresDev() {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import config from '../config/config';
-import DefinitionDetail from './DefinitionDetail';
-import UsageDetail from './UsageDetail';
+import config from '../../config/config';
+import DefinitionDetail from './DefinitionDetailDev';
+import UsageDetailDev from './UsageDetailDev';
 
-export default function Definition() {
+export default function FigureDev() {
   const { id } = useParams();
   const [definitionData, setDefinitionData] = useState(null);
   const [usageData, setUsageData] = useState(null);
@@ -54,7 +54,7 @@ export default function Definition() {
   return (
     <>
         <DefinitionDetail record={definitionData} />
-        <UsageDetail record={usageData} />
+        <UsageDetailDev record={usageData} />
     </>
   );
 }

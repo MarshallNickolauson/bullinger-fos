@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import config from '../config/config'
+import config from '../../config/config'
 
-export default function DefinitionDetail({ record }) {
+export default function DefinitionDetailDev({ record }) {
     const id = record['id'];
     const [isEditing, setIsEditing] = useState(false);
     const [editableBookPosition, setEditableBookPosition] = useState(record['book_position']);
@@ -32,14 +32,14 @@ export default function DefinitionDetail({ record }) {
     const handlePrevClick = () => {
         const prevId = id - 1;
         if (prevId >= 1 && prevId <= 201) {
-            navigate(`/figures/${prevId}`)
+            navigate(`/dev/figures/${prevId}`)
         }
     }
 
     const handleNextClick = () => {
         const nextId = id + 1;
         if (nextId >= 1 && nextId <= 201) {
-            navigate(`/figures/${nextId}`)
+            navigate(`/dev/figures/${nextId}`)
         }
     }
 

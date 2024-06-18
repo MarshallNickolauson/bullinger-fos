@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import config from '../config/config'
+import config from '../../config/config'
 
-export default function UsageDetail({ record }) {
+export default function UsageDetailDev({ record }) {
 
     const id = record['book_position'];
     const [isEditing, setIsEditing] = useState(false);
