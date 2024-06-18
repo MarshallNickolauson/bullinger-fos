@@ -7,7 +7,7 @@ import Definition from './components/Figure';
 function App() {
   return (
     <Router>
-      <div className='container-xlg'>
+      <div className='container-xl'>
         <Routes>
           <Route path='/figures' element={<Definitions />} />
           <Route path='/figures/:id' element={<Definition />} />
