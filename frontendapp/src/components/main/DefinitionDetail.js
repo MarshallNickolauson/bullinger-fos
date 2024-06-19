@@ -10,6 +10,17 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     const [editedContent, setEditedContent] = useState(definition);
 
     const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isModalOpen]);
 
     const handlePrevClick = () => {
         const prevId = id - 1;
@@ -50,7 +61,16 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
     const handleEditClick = (event) => {
         event.stopPropagation();
-        console.log('modal state');
+        setIsModalOpen(true);
+    }
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    }
+
+    const handleSaveChanges = () => {
+        console.log('Saved changes: ', editedContent);
+        setIsModalOpen(false);
     }
 
     return (
@@ -90,6 +110,34 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     </div>
                     <div className="toggle-indicator">
                         {isDefinitionExpanded ? '...' : '...'}
+                    </div>
+                </div>
+
+                {/* Backdrop */}
+                {isModalOpen && <div className="modal-backdrop show"></div>}
+
+                {/* Modal */}
+                <div className={`modal fade ${isModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isModalOpen ? 'block' : 'none' }}>
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Edit Content</h5>
+                                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseModal}></button>
+                            </div>
+                            <div className="modal-body">
+                                <textarea
+                                    className="form-control"
+                                    value={editedContent}
+                                    onChange={(e) => setEditedContent(e.target.value)}
+                                    rows={15}
+                                    style={{ resize: 'none' }}
+                                />
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-primary" onClick={handleSaveChanges}>Save Changes</button>
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={handleCloseModal}>Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
