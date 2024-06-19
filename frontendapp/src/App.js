@@ -11,7 +11,7 @@ import config from './config/config';
 
 function App() {
 
-  const [definitionData, setDefinitionData] = useState(null);
+  const [definitionData, setDefinitionData] = useState([]);
 
   useEffect(() => {
     const definitionApiEndpoint = `${config.apiBaseUrl}/definitions`;
@@ -35,13 +35,17 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(definitionData);
+  }, [definitionData]);
+
   return (
     <Router>
       <div>
         <TopNavbar />
         <div className="row">
-          <div className="col-2 bg-light vh-100">
-            <SideNavbar />
+          <div className="col-2 vh-100">
+            <SideNavbar data={definitionData} />
           </div>
           <div className="col-10">
             <Routes>
