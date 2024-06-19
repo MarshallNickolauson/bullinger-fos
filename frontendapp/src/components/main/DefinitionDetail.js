@@ -1,18 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import config from '../../config/config';
 
-export default function DefinitionDetail({ record, isDefinitionExpanded, toggleDefinitionExpand }) {
+export default function DefinitionDetail({ record, isDefinitionExpanded, toggleDefinitionExpand, onContentUpdate }) {
     const id = record['id'];
     const figure_name = record['figure_name'];
     const definition = record['content'] || '';
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editedContent, setEditedContent] = useState('');
+    const [editableContent, setEditableContent] = useState('');
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        setEditedContent(record['content']);
+        setEditableContent(record['content']);
     }, [record]);
     
     useEffect(() => {
@@ -73,9 +74,32 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     }
 
     const handleSaveChanges = () => {
-        console.log('Saved changes: ', editedContent);
-        setIsModalOpen(false);
-    }
+        const apiEndpoint = `${config.apiBaseUrl}/definitions/${id}`;
+
+        fetch(apiEndpoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "id": id,
+                "book_position": record['book_position'],
+                "figure_name": record['figure_name'],
+                "content": editableContent,
+                "custom_rules": editableContent == '' ? '//Code for react formatting' : editableContent,
+            }),
+        }).then(response => {
+            if (!response.ok) {
+                return response.json().then(errorData => {
+                    throw new Error(`Failed to save definition: ${JSON.stringify(errorData)}`);
+                });
+            }
+            return response.json();
+        }).then(updatedRecord => {
+            setIsModalOpen(false);
+            onContentUpdate(updatedRecord);
+        });
+    };
 
     return (
         <>
@@ -131,8 +155,8 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                             <div className="modal-body">
                                 <textarea
                                     className="form-control"
-                                    value={editedContent}
-                                    onChange={(e) => setEditedContent(e.target.value)}
+                                    value={editableContent}
+                                    onChange={(e) => setEditableContent(e.target.value)}
                                     rows={15}
                                     style={{ resize: 'none' }}
                                 />

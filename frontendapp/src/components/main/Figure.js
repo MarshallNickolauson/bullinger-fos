@@ -19,6 +19,10 @@ export default function Figure({ definitions, usages }) {
         setIsDefinitionExpanded(false);
     }, [location, stringId, definitions, usages]);
 
+    const handleDefinitionUpdate = (updatedContent) => {
+        setDefinitionData(updatedContent);
+    };
+
     const toggleDefinitionExpand = () => {
         setIsDefinitionExpanded(!isDefinitionExpanded);
         if (isDefinitionExpanded) {
@@ -40,6 +44,7 @@ export default function Figure({ definitions, usages }) {
                 record={definitionData}
                 isDefinitionExpanded={isDefinitionExpanded}
                 toggleDefinitionExpand={toggleDefinitionExpand}
+                onContentUpdate={handleDefinitionUpdate}
             />
             
         </>
