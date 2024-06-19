@@ -8,15 +8,17 @@ import SideNavbar from './components/main/SideNavBar';
 import AboutPage from './components/main/AboutPage';
 import { useEffect, useState } from 'react';
 import config from './config/config';
+import Figure from './components/main/Figure';
 
 function App() {
-
   const [definitionData, setDefinitionData] = useState([]);
+  const [usageData, setUsageData] = useState([]);
 
   useEffect(() => {
     const definitionApiEndpoint = `${config.apiBaseUrl}/definitions`;
+    const usageApiEndpoint = `${config.apiBaseUrl}/usages`;
 
-    fetch(definitionApiEndpoint, {
+    const fetchDefinitions = fetch(definitionApiEndpoint, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -28,16 +30,36 @@ function App() {
         });
       }
       return response.json();
-    }).then(data => {
-      setDefinitionData(data);
-    }).catch(e => {
-      console.error('Error getting content: ', e);
     });
+
+    const fetchUsages = fetch(usageApiEndpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(response => {
+      if (!response.ok) {
+        return response.json().then(error => {
+          throw new Error(`Failed to get content: ${JSON.stringify(error)}`)
+        });
+      }
+      return response.json();
+    });
+
+    Promise.all([fetchDefinitions, fetchUsages])
+      .then(([definitions, usages]) => {
+        setDefinitionData(definitions);
+        setUsageData(usages);
+      })
+      .catch(e => {
+        console.error('Error getting content: ', e);
+      });
   }, []);
 
   useEffect(() => {
     console.log(definitionData);
-  }, [definitionData]);
+    console.log(usageData);
+  }, [definitionData, usageData]);
 
   return (
     <Router>
@@ -51,7 +73,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
-
+              <Route path='/figures/:id' element={<Figure definitions={definitionData} usages={usageData} />} />
 
               <Route path='/dev/figures' element={<FiguresDev />} />
               <Route path='/dev/figures/:id' element={<FigureDev />} />

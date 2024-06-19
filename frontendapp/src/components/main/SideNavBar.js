@@ -15,9 +15,9 @@ export default function SideNavbar({ data }) {
 
     return (
         <nav className="nav flex-column bg-light">
-            <a className="nav-link">Introduction</a>
+            <Link to='/introduction' className="nav-link">Introduction</Link>
             {sortedDefinitionData.map((item, index) => (
-                <Link to={`/dev/figures/${item.id}`} className="nav-link" key={index}>{item.figure_name}</Link>
+                <Link to={`/figures/${item.id}`} className="nav-link" key={index}>{item.figure_name}</Link>
             ))}
         </nav>
     );
