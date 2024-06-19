@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import config from '../../config/config';
 import DefinitionDetail from './DefinitionDetail';
+import UsageDetil from './UsageDetail';
 
 export default function Figure({ definitions, usages }) {
     const { id } = useParams();
@@ -11,6 +11,7 @@ export default function Figure({ definitions, usages }) {
 
     const [definitionData, setDefinitionData] = useState([]);
     const [usageData, setUsageData] = useState([]);
+
     const [isDefinitionExpanded, setIsDefinitionExpanded] = useState(false);
 
     useEffect(() => {
@@ -21,6 +22,10 @@ export default function Figure({ definitions, usages }) {
 
     const handleDefinitionUpdate = (updatedContent) => {
         setDefinitionData(updatedContent);
+    };
+
+    const handleUsageUpdate = (updatedContent) => {
+        setUsageData(updatedContent);
     };
 
     const toggleDefinitionExpand = () => {
@@ -43,7 +48,10 @@ export default function Figure({ definitions, usages }) {
                 toggleDefinitionExpand={toggleDefinitionExpand}
                 onContentUpdate={handleDefinitionUpdate}
             />
-            
+            <UsageDetil 
+                record={usageData}
+                onContentUpdate={handleUsageUpdate}
+            />
         </>
     );
 }
