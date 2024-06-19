@@ -1,17 +1,59 @@
-.definition-card {
-    border: 1px solid #ccc;
+.top-navbar {
+    border-bottom: 2px solid #cecece;
+}
+
+.side-navbar {
+    border-right: 2px solid #cecece;
+}
+
+.book-section-link {
+    text-align: center;
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+    padding: 0.5rem 0;
+    transition: 0.2s ease-in-out;
+    margin: 0 0.25rem;
     border-radius: 4px;
+}
+
+.book-section-link:hover {
+    background-color: #e1e1e1;
+}
+
+.main-container {
+    max-width: 95%;
+    margin-left: 1rem;
+    margin-right: 3rem;
+}
+
+.top-row-container {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #cecece;
+}
+
+.definition-title {
+    font-size: 2rem;
+    color: rgb(51, 51, 51);
+}
+
+.definition-card {
+    border-radius: 10px;
     padding: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     position: relative;
     overflow: hidden;
-    transition: max-height 0.5s ease;
     cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(114, 114, 114, 0.5);
+}
+
+.figure-name {
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 600;
 }
 
 .definition-card .content {
     overflow: hidden;
-    transition: max-height 1s ease;
     max-height: 150px;
     margin-bottom: 20px;
 }
@@ -22,6 +64,7 @@
 
 .definition-card .content.expanded {
     max-height: 10000px;
+    width: 90%;    
 }
 
 .definition-card .toggle-indicator {
@@ -38,5 +81,6 @@
     position: absolute;
     top: 15px;
     right: 15px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 

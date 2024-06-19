@@ -13,12 +13,17 @@ export default function SideNavbar({ data }) {
     return 0;
   });
 
+  const capitalizeFirstLetter = (string) => {
+    if (!string) return '';
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
-    <div className="fixed-side pt-5">
-      <nav className="nav flex-column bg-light">
-        <Link to='/introduction' className="nav-link">Introduction</Link>
+    <div className="fixed-side pt-5 mt-3 side-navbar">
+      <nav className="nav flex-column">
+        <Link to='/introduction' className="book-section-link">Introduction</Link>
         {sortedDefinitionData.map((item, index) => (
-          <Link to={`/figures/${item.id}`} className="nav-link" key={index}>{item.figure_name}</Link>
+          <Link to={`/figures/${item.id}`} className="book-section-link" key={index}>{capitalizeFirstLetter(item.figure_name)}</Link>
         ))}
       </nav>
     </div>

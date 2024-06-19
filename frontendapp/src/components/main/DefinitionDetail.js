@@ -47,8 +47,8 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     }
 
     const getPreviewText = (text) => {
-        const sentences = text.split('. ');
-        return sentences.slice(0, 2).join('. ') + '...';
+        const sentences = text.split('.');
+        return sentences.slice(0, 2).join('.') + '...';
     };
 
     const formatContent = (content) => {
@@ -103,9 +103,10 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
     return (
         <>
-            <div className="container mt-4">
+            <div className="main-container mt-4">
 
-                <div className="row text-center">
+                {/* Main content */}
+                <div className="row text-center top-row-container">
                     <div className="col-2">
                         <button
                             type="button"
@@ -115,7 +116,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                             Prev
                         </button>
                     </div>
-                    <div className="col-8">
+                    <div className="col-8 figure-name">
                         {capitalizeFirstLetter(figure_name)}
                     </div>
                     <div className="col-2">
@@ -129,6 +130,8 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     </div>
                 </div>
 
+                {/* Definition Card */}
+                <h1 className='definition-title mt-3'>Definition</h1>
                 <div className="definition-card container" onClick={toggleExpand}>
                     <div className={`content ${isDefinitionExpanded ? 'expanded' : 'collapsed'}`}>
                         {isDefinitionExpanded ? formatContent(definition) : getPreviewText(definition)}
@@ -149,7 +152,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Edit Content</h5>
+                                <h5 className="modal-title">Edit Definition Content</h5>
                                 <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseModal}></button>
                             </div>
                             <div className="modal-body">

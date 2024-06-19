@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function TopNavbar() {
 
     return (
-        <div className="fixed-top" >
+        <div className="fixed-top top-navbar" >
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#"><strong>Bullinger FoS</strong></a>

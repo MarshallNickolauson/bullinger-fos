@@ -28,9 +28,6 @@ export default function Figure({ definitions, usages }) {
         if (isDefinitionExpanded) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        if (!isDefinitionExpanded) {
-            window.scrollTo({ top: 60, behavior: 'smooth' })
-        }
     };
 
     if (!definitionData || !usageData) {
