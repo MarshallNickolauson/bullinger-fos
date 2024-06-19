@@ -8,14 +8,16 @@ export default function Figure({ definitions, usages }) {
     const location = useLocation();
 
     const stringId = String(id);
-    const definitionData = definitions.find(def => String(def.id) === stringId);
-    const usageData = usages.find(usage => String(usage.id) === stringId);
 
+    const [definitionData, setDefinitionData] = useState([]);
+    const [usageData, setUsageData] = useState([]);
     const [isDefinitionExpanded, setIsDefinitionExpanded] = useState(false);
 
     useEffect(() => {
+        setDefinitionData(definitions.find(def => String(def.id) === stringId));
+        setUsageData(usages.find(usage => String(usage.id) === stringId));
         setIsDefinitionExpanded(false);
-    }, [location]);
+    }, [location, stringId, definitions, usages]);
 
     const toggleDefinitionExpand = () => {
         setIsDefinitionExpanded(!isDefinitionExpanded);

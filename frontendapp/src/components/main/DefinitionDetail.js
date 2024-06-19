@@ -4,12 +4,16 @@ import { useNavigate } from 'react-router-dom';
 export default function DefinitionDetail({ record, isDefinitionExpanded, toggleDefinitionExpand }) {
     const id = record['id'];
     const figure_name = record['figure_name'];
-    const definition = record['content'];
+    const definition = record['content'] || '';
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editedContent, setEditedContent] = useState(definition);
+    const [editedContent, setEditedContent] = useState('');
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setEditedContent(record['content']);
+    }, [record]);
     
     useEffect(() => {
         if (isModalOpen) {
