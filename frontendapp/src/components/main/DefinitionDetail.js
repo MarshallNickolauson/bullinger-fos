@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function DefinitionDetail({ record }) {
+export default function DefinitionDetail({ record, isDefinitionExpanded, toggleDefinitionExpand }) {
     const id = record['id'];
     const figure_name = record['figure_name'];
     const definition = record['content'];
@@ -27,9 +27,18 @@ export default function DefinitionDetail({ record }) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    const getPreviewText = (text) => {
+        const sentences = text.split('. ');
+        return sentences.slice(0, 2).join('. ') + '...';
+    };
+
+    const toggleExpand = () => {
+        toggleDefinitionExpand();
+    };
+
     return (
         <>
-            <div className="container mt-3">
+            <div className="container mt-4">
 
                 <div className="row text-center">
                     <div className="col-2">
@@ -55,7 +64,14 @@ export default function DefinitionDetail({ record }) {
                     </div>
                 </div>
 
-                    
+                <div className="definition-card" onClick={toggleExpand}>
+                    <div className={`content ${isDefinitionExpanded ? 'expanded' : 'collapsed'}`}>
+                        {isDefinitionExpanded ? definition : getPreviewText(definition)}
+                    </div>
+                    <div className="toggle-indicator">
+                        {isDefinitionExpanded ? '...' : '...'}
+                    </div>
+                </div>
 
             </div>
         </>

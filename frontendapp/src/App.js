@@ -56,11 +56,6 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
-    console.log(definitionData);
-    console.log(usageData);
-  }, [definitionData, usageData]);
-
   return (
     <Router>
       <div>
@@ -69,7 +64,7 @@ function App() {
           <div className="col-2 vh-100">
             <SideNavbar data={definitionData} />
           </div>
-          <div className="col-10">
+          <main className="col-10 pt-5">
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
@@ -78,7 +73,7 @@ function App() {
               <Route path='/dev/figures' element={<FiguresDev />} />
               <Route path='/dev/figures/:id' element={<FigureDev />} />
             </Routes>
-          </div>
+          </main>
         </div>
       </div>
     </Router>
