@@ -3,12 +3,15 @@ import config from '../../config/config';
 
 export default function UsageDetil({ record, onContentUpdate }) {
     const id = record['id'];
-    const content = record['content'] || '';
 
     const [isEditing, setIsEditing] = useState(false);
     const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
     const [editableContent, setEditableContent] = useState('');
     const [editableRules, setEditableRules] = useState('');
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
 
     useEffect(() => {
         setEditableContent(record['content']);
@@ -26,15 +29,24 @@ export default function UsageDetil({ record, onContentUpdate }) {
         };
     }, [isRuleModalOpen]);
 
-    const capitalizeFirstLetter = (string) => {
-        if (!string) return '';
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                setIsEditing(false);
+                setIsRuleModalOpen(false);
+            }
+        };
 
-    const getPreviewText = (text) => {
-        const sentences = text.split('.');
-        return sentences.slice(0, 2).join('.') + '...';
-    };
+        if (isEditing || isRuleModalOpen) {
+            document.addEventListener('keydown', handleKeyDown);
+        } else {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isEditing, isRuleModalOpen]);
 
     const formatContent = (content) => {
         return content.split('\n').map((line, index) => (
@@ -50,8 +62,17 @@ export default function UsageDetil({ record, onContentUpdate }) {
         setIsEditing(true);
     }
 
-    const handleCloseModal = () => {
+    const handleCloseEdit = () => {
         setIsEditing(false);
+    }
+
+    const handleRuleClick = (event) => {
+        event.stopPropagation();
+        setIsRuleModalOpen(true);
+    }
+
+    const handleCloseRuleModal = () => {
+        setIsRuleModalOpen(false);
     }
 
     const handleSaveChanges = () => {
@@ -67,7 +88,7 @@ export default function UsageDetil({ record, onContentUpdate }) {
                 "book_position": record['book_position'],
                 "figure_name": record['figure_name'],
                 "content": editableContent,
-                "custom_rules": editableContent == '' ? '//Code for react formatting' : editableContent,
+                "custom_rules": editableRules == '' ? '[]' : editableRules,
             }),
         }).then(response => {
             if (!response.ok) {
@@ -78,7 +99,9 @@ export default function UsageDetil({ record, onContentUpdate }) {
             return response.json();
         }).then(updatedRecord => {
             setIsEditing(false);
+            setIsRuleModalOpen(false);
             onContentUpdate(updatedRecord);
+            scrollToTop();
         });
     };
 
@@ -88,42 +111,64 @@ export default function UsageDetil({ record, onContentUpdate }) {
 
                 {/* Usage Header */}
                 <div className='sticky-header'>
-                    <div className='d-flex justify-content-between align-items-center'>
+                    <div className='d-flex justify-content-between align-items-center mt-3'>
                         <h1 className='usage-title'>Usages</h1>
-                        <button type='button' className='btn btn-outline-dark edit-button' onClick={handleEditClick}>Edit</button>
+                        <div>
+                            {isEditing ? (
+                                <>
+                                    <button type="button" className="btn btn-outline-dark mx-1" data-dismiss="modal" onClick={handleCloseEdit}>Close</button>
+                                    <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
+                                </>
+                            ) : (
+                                <>
+                                    <button type='button' className='btn btn-outline-dark edit-button mx-1' onClick={handleEditClick}>Edit</button>
+                                    <button type='button' className='btn btn-outline-dark edit-button' onClick={handleRuleClick}>Rule</button>  
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
-
 
                 {/* Usage Card */}
                 <div className="usage-card container">
-                    <div className='content expanded'>
-                        {formatContent(content)}
-                    </div>
+                    {isEditing ? (
+                        <div className='content expanded'>
+                            <textarea
+                                className='definition-edit-box'
+                                value={editableContent}
+                                onChange={(e) => setEditableContent(e.target.value)}
+                                rows={20}
+                            />
+                        </div>
+                    ) : (
+                        <div className='content expanded'>
+                            {formatContent(editableContent)}
+                        </div>
+                    )}
                 </div>
 
                 {/* Backdrop */}
-                {isEditing && <div className="modal-backdrop show"></div>}
+                {isRuleModalOpen && <div className="modal-backdrop show"></div>}
 
-                {/* Modal */}
-                <div className={`modal fade ${isEditing ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isEditing ? 'block' : 'none' }}>
+                {/* Rule Modal */}
+                <div className={`modal fade ${isRuleModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isRuleModalOpen ? 'block' : 'none' }}>
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Edit Usages Content</h5>
-                                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseModal}></button>
+                                <h5 className="modal-title">Edit Usage Formatting</h5>
+                                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseRuleModal}></button>
                             </div>
                             <div className="modal-body">
                                 <textarea
                                     className="form-control"
-                                    value={editableContent}
-                                    onChange={(e) => setEditableContent(e.target.value)}
+                                    value={editableRules}
+                                    onChange={(e) => setEditableRules(e.target.value)}
                                     rows={15}
-                                    style={{ resize: 'none' }}
+                                    style={{ resize: 'none', whiteSpace: 'pre-wrap' }}
                                 />
                             </div>
                             <div className="modal-footer">
-                                <button button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseModal}>Close</button>
+                                <button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseRuleModal}>Close</button>
                                 <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
                             </div>
                         </div>

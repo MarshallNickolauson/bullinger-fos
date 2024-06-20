@@ -5,7 +5,6 @@ import config from '../../config/config';
 export default function DefinitionDetail({ record, isDefinitionExpanded, toggleDefinitionExpand, setDefinitionExpand, onContentUpdate }) {
     const id = record['id'];
     const figure_name = record['figure_name'];
-    const definition = record['content'] || '';
 
     const [isEditing, setIsEditing] = useState(false);
     const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
@@ -13,6 +12,10 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     const [editableRules, setEditableRules] = useState('');
 
     const navigate = useNavigate();
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 90, behavior: 'smooth' });
+    }
 
     useEffect(() => {
         setEditableContent(record['content']);
@@ -81,11 +84,13 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
         event.stopPropagation();
         setDefinitionExpand(true);
         setIsEditing(true);
+        scrollToTop();
     }
 
-    const handleCloseEditModal = () => {
+    const handleCloseEdit = () => {
         setIsEditing(false);
         setDefinitionExpand(true);
+        scrollToTop();
     }
 
     const handleRuleClick = (event) => {
@@ -124,6 +129,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
             setIsRuleModalOpen(false);
             onContentUpdate(updatedRecord);
             setDefinitionExpand(true);
+            scrollToTop();
         });
     };
 
@@ -201,7 +207,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                         <div>
                             {isEditing ? (
                                 <>
-                                    <button type="button" className="btn btn-outline-dark mx-1" data-dismiss="modal" onClick={handleCloseEditModal}>Close</button>
+                                    <button type="button" className="btn btn-outline-dark mx-1" data-dismiss="modal" onClick={handleCloseEdit}>Close</button>
                                     <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
                                 </>
                             ) : (
@@ -216,7 +222,6 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
                 {/* Definition Card */}
                 <div className="definition-card container">
-
                     {isEditing ? (
                         <div className='content expanded'>
                             <textarea
@@ -228,7 +233,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                         </div>
                     ) : <>
                         <div className={`content ${isDefinitionExpanded ? 'expanded' : 'collapsed'}`}>
-                            {isDefinitionExpanded ? formatContent(definition) : getPreviewText(definition)}
+                            {isDefinitionExpanded ? formatContent(editableContent) : getPreviewText(editableContent)}
                         </div>
                     </>
                     }
@@ -243,7 +248,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Edit Formatting</h5>
+                                <h5 className="modal-title">Edit Definition Formatting</h5>
                                 <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseRuleModal}></button>
                             </div>
                             <div className="modal-body">
