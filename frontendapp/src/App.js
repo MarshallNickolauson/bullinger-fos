@@ -56,6 +56,22 @@ function App() {
       });
   }, []);
 
+  const handleUpdateDefinition = (updatedDefinition) => {
+    setDefinitionData((prevDefinitions) =>
+      prevDefinitions.map((definition) =>
+        definition.id === updatedDefinition.id ? updatedDefinition : definition
+      )
+    );
+  };
+
+  const handleUpdateUsage = (updatedUsage) => {
+    setUsageData((prevUsages) =>
+      prevUsages.map((usage) =>
+        usage.id === updatedUsage.id ? updatedUsage : usage
+      )
+    );
+  };
+
   return (
     <Router>
       <div>
@@ -68,7 +84,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
-              <Route path='/figures/:id' element={<Figure definitions={definitionData} usages={usageData} />} />
+              <Route path='/figures/:id' element={<Figure definitions={definitionData} usages={usageData} onUpdateDefinition={handleUpdateDefinition} onUpdateUsage={handleUpdateUsage} />} />
 
               <Route path='/dev/figures' element={<FiguresDev />} />
               <Route path='/dev/figures/:id' element={<FigureDev />} />

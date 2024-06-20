@@ -233,7 +233,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                         </div>
                     ) : <>
                         <div className={`content ${isDefinitionExpanded ? 'expanded' : 'collapsed'}`}>
-                            {isDefinitionExpanded ? formatContent(editableContent) : getPreviewText(editableContent)}
+                            {isDefinitionExpanded ? formatContent(editableContent) : getPreviewText(editableContent ? editableContent : '')}
                         </div>
                     </>
                     }

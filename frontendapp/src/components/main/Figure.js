@@ -3,7 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import DefinitionDetail from './DefinitionDetail';
 import UsageDetil from './UsageDetail';
 
-export default function Figure({ definitions, usages }) {
+export default function Figure({ definitions, usages, onUpdateDefinition, onUpdateUsage }) {
     const { id } = useParams();
     const location = useLocation();
 
@@ -19,10 +19,6 @@ export default function Figure({ definitions, usages }) {
         setUsageData(usages.find(usage => String(usage.id) === stringId));
         setIsDefinitionExpanded(false);
     }, [location, stringId, definitions, usages]);
-
-    const handleDefinitionUpdate = (updatedContent) => {
-        setDefinitionData(updatedContent);
-    };
 
     const handleUsageUpdate = (updatedContent) => {
         setUsageData(updatedContent);
@@ -47,11 +43,11 @@ export default function Figure({ definitions, usages }) {
                 isDefinitionExpanded={isDefinitionExpanded}
                 toggleDefinitionExpand={toggleDefinitionExpand}
                 setDefinitionExpand={setIsDefinitionExpanded}
-                onContentUpdate={handleDefinitionUpdate}
+                onContentUpdate={onUpdateDefinition}
             />
             <UsageDetil 
                 record={usageData}
-                onContentUpdate={handleUsageUpdate}
+                onContentUpdate={onUpdateUsage}
             />
         </>
     );
