@@ -21,7 +21,6 @@
 }
 
 .main-container {
-    max-width: 95%;
     margin-left: 1rem;
     margin-right: 3rem;
 }
@@ -92,7 +91,7 @@
 
 .definition-card .content.expanded {
     max-height: 10000px;
-    width: 90%;    
+    width: 100%;    
 }
 
 .definition-card .toggle-indicator {

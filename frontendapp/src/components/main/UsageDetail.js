@@ -86,8 +86,8 @@ export default function UsageDetil({ record, onContentUpdate }) {
 
                 {/* Usage Header */}
                 <div className='sticky-header'>
-                    <div className='d-flex justify-content-between align-items-center mt-3'>
-                        <h1 className='usage-title mt-3'>Usages</h1>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <h1 className='usage-title'>Usages</h1>
                         <button type='button' className='btn btn-outline-dark edit-button' onClick={handleEditClick}>Edit</button>
                     </div>
                 </div>
