@@ -7,7 +7,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     const figure_name = record['figure_name'];
     const definition = record['content'] || '';
 
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
     const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
     const [editableContent, setEditableContent] = useState('');
     const [editableRules, setEditableRules] = useState('');
@@ -33,13 +33,13 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
-                setIsEditModalOpen(false);
+                setIsEditing(false);
                 setIsRuleModalOpen(false);
                 toggleExpand();
             }
         };
 
-        if (isEditModalOpen || isRuleModalOpen) {
+        if (isEditing || isRuleModalOpen) {
             document.addEventListener('keydown', handleKeyDown);
         } else {
             document.removeEventListener('keydown', handleKeyDown);
@@ -48,7 +48,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [isEditModalOpen, isRuleModalOpen]);
+    }, [isEditing, isRuleModalOpen]);
 
     const handlePrevClick = () => {
         const prevId = id - 1;
@@ -81,11 +81,11 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     const handleEditClick = (event) => {
         event.stopPropagation();
         toggleExpand();
-        setIsEditModalOpen(true);
+        setIsEditing(true);
     }
 
     const handleCloseEditModal = () => {
-        setIsEditModalOpen(false);
+        setIsEditing(false);
         setDefinitionExpand(true);
     }
 
@@ -121,7 +121,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
             }
             return response.json();
         }).then(updatedRecord => {
-            setIsEditModalOpen(false);
+            setIsEditing(false);
             setIsRuleModalOpen(false);
             onContentUpdate(updatedRecord);
             setDefinitionExpand(true);
@@ -181,7 +181,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <button
                         type="button"
                         className="btn btn-outline-dark"
-                        disabled={id === 1 || isEditModalOpen}
+                        disabled={id === 1 || isEditing}
                         onClick={handlePrevClick}>
                         Prev
                     </button>
@@ -189,7 +189,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <button
                         type="button"
                         className="btn btn-outline-dark"
-                        disabled={id === 201 || isEditModalOpen}
+                        disabled={id === 201 || isEditing}
                         onClick={handleNextClick}>
                         Next
                     </button>
@@ -200,7 +200,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <div className='d-flex justify-content-between align-items-center mt-3'>
                         <h1 className='definition-title'>Definition</h1>
                         <div>
-                            {isEditModalOpen ? (
+                            {isEditing ? (
                                 <>
                                     <button type="button" className="btn btn-outline-dark mx-1" data-dismiss="modal" onClick={handleCloseEditModal}>Close</button>
                                     <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
@@ -218,7 +218,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 {/* Definition Card */}
                 <div className="definition-card container">
 
-                    {isEditModalOpen ? (
+                    {isEditing ? (
                         <div className='content expanded'>
                             <textarea
                                 className='definition-edit-box'
