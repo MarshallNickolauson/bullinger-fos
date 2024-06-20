@@ -57,6 +57,18 @@
     right: -3px;
 }
 
+.definition-edit-box {
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 10px;
+    box-sizing: border-box;
+    white-space: pre-wrap; /* Ensures whitespace handling is consistent */
+    border-radius: 4px;
+    border: 2px solid #cecece;
+    background-color: #f4f4f4;
+}
+
 .definition-title,
 .usage-title {
     font-size: 2rem;

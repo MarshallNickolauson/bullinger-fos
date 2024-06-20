@@ -46,6 +46,7 @@ export default function Figure({ definitions, usages }) {
                 record={definitionData}
                 isDefinitionExpanded={isDefinitionExpanded}
                 toggleDefinitionExpand={toggleDefinitionExpand}
+                setDefinitionExpand={setIsDefinitionExpanded}
                 onContentUpdate={handleDefinitionUpdate}
             />
             <UsageDetil 

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '../../config/config';
 
-export default function DefinitionDetail({ record, isDefinitionExpanded, toggleDefinitionExpand, onContentUpdate }) {
+export default function DefinitionDetail({ record, isDefinitionExpanded, toggleDefinitionExpand, setDefinitionExpand, onContentUpdate }) {
     const id = record['id'];
     const figure_name = record['figure_name'];
     const definition = record['content'] || '';
@@ -20,7 +20,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     }, [record]);
 
     useEffect(() => {
-        if (isEditModalOpen) {
+        if (isRuleModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
@@ -28,26 +28,27 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
         return () => {
             document.body.style.overflow = 'auto';
         };
-    }, [isEditModalOpen]);
-    
+    }, [isRuleModalOpen]);
+
     useEffect(() => {
         const handleKeyDown = (event) => {
-          if (event.key === 'Escape') {
-            setIsEditModalOpen(false);
-            setIsRuleModalOpen(false);
-          }
+            if (event.key === 'Escape') {
+                setIsEditModalOpen(false);
+                setIsRuleModalOpen(false);
+                toggleExpand();
+            }
         };
 
         if (isEditModalOpen || isRuleModalOpen) {
-          document.addEventListener('keydown', handleKeyDown);
+            document.addEventListener('keydown', handleKeyDown);
         } else {
-          document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keydown', handleKeyDown);
         }
-    
+
         return () => {
-          document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keydown', handleKeyDown);
         };
-      }, [isEditModalOpen, isRuleModalOpen]);
+    }, [isEditModalOpen, isRuleModalOpen]);
 
     const handlePrevClick = () => {
         const prevId = id - 1;
@@ -79,11 +80,13 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
     const handleEditClick = (event) => {
         event.stopPropagation();
+        toggleExpand();
         setIsEditModalOpen(true);
     }
 
     const handleCloseEditModal = () => {
         setIsEditModalOpen(false);
+        setDefinitionExpand(true);
     }
 
     const handleRuleClick = (event) => {
@@ -121,6 +124,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
             setIsEditModalOpen(false);
             setIsRuleModalOpen(false);
             onContentUpdate(updatedRecord);
+            setDefinitionExpand(true);
         });
     };
 
@@ -140,11 +144,11 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
             return [];
         }
     };
-    
+
     const applyIndentation = (line) => {
         const customRules = parseCustomRules(record['custom_rules']);
         //console.log('Custom Rules:', customRules);
-        
+
         for (const { pattern, spaces } of customRules) {
             if (pattern.test(line)) {
                 return (
@@ -155,7 +159,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 );
             }
         }
-        
+
         return line;
     };
 
@@ -196,48 +200,45 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <div className='d-flex justify-content-between align-items-center mt-3'>
                         <h1 className='definition-title'>Definition</h1>
                         <div>
-                            <button type='button' className='btn btn-outline-dark edit-button mx-1' onClick={handleEditClick}>Edit</button>
-                            <button type='button' className='btn btn-outline-dark edit-button' onClick={handleRuleClick}>Rule</button>
+                            {isEditModalOpen ? (
+                                <>
+                                    <button type="button" className="btn btn-outline-dark mx-1" data-dismiss="modal" onClick={handleCloseEditModal}>Close</button>
+                                    <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
+                                </>
+                            ) : (
+                                <>
+                                    <button type='button' className='btn btn-outline-dark edit-button mx-1' onClick={handleEditClick}>Edit</button>
+                                    <button type='button' className='btn btn-outline-dark edit-button' onClick={handleRuleClick}>Rule</button>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
 
                 {/* Definition Card */}
                 <div className="definition-card container">
-                    <div className={`content ${isDefinitionExpanded ? 'expanded' : 'collapsed'}`}>
-                        {isDefinitionExpanded ? formatContent(definition) : getPreviewText(definition)}
-                    </div>
+
+                    {isEditModalOpen ? (
+                        <div className='content expanded'>
+                            <textarea
+                                className='definition-edit-box'
+                                value={editableContent}
+                                onChange={(e) => setEditableContent(e.target.value)}
+                                style={{ resize: 'none', whiteSpace: 'pre-wrap' }}
+                                rows={20}
+                            />
+                        </div>
+                    ) : <>
+                        <div className={`content ${isDefinitionExpanded ? 'expanded' : 'collapsed'}`}>
+                            {isDefinitionExpanded ? formatContent(definition) : getPreviewText(definition)}
+                        </div>
+                    </>
+                    }
                     <div className="toggle-indicator" onClick={toggleExpand}>...</div>
                 </div>
 
-                {/* Backdrops */}
-                {isEditModalOpen && <div className="modal-backdrop show"></div>}
+                {/* Backdrop */}
                 {isRuleModalOpen && <div className="modal-backdrop show"></div>}
-
-                {/* Edit Modal */}
-                <div className={`modal fade ${isEditModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isEditModalOpen ? 'block' : 'none' }}>
-                    <div className="modal-dialog modal-dialog-centered" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title">Edit Definition Content</h5>
-                                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseEditModal}></button>
-                            </div>
-                            <div className="modal-body">
-                                <textarea
-                                    className="form-control"
-                                    value={editableContent}
-                                    onChange={(e) => setEditableContent(e.target.value)}
-                                    rows={15}
-                                    style={{ resize: 'none', whiteSpace: 'pre-wrap' }}
-                                />
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseEditModal}>Close</button>
-                                <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 {/* Rule Modal */}
                 <div className={`modal fade ${isRuleModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isRuleModalOpen ? 'block' : 'none' }}>
