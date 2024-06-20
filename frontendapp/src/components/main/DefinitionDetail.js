@@ -15,7 +15,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     useEffect(() => {
         setEditableContent(record['content']);
     }, [record]);
-    
+
     useEffect(() => {
         if (isModalOpen) {
             document.body.style.overflow = 'hidden';
@@ -49,15 +49,6 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     const getPreviewText = (text) => {
         const sentences = text.split('.');
         return sentences.slice(0, 2).join('.') + '...';
-    };
-
-    const formatContent = (content) => {
-        return content.split('\n').map((line, index) => (
-            <React.Fragment key={index}>
-                {line}
-                <br />
-            </React.Fragment>
-        ));
     };
 
     const toggleExpand = () => {
@@ -101,47 +92,75 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
         });
     };
 
+    const applyIndentation = (line) => {
+        const indentPatterns = [
+            { pattern: /^(I|V|X)+\. /, spaces: 5 },
+            { pattern: /^\d\. /, spaces: 10 },
+            { pattern: /^[a-z]\. /, spaces: 15 },
+            { pattern: /^(i|v|x)+\) /, spaces: 20 }
+        ];
+
+        for (const { pattern, spaces } of indentPatterns) {
+            if (pattern.test(line)) {
+                return (
+                    <span>
+                        {'\u00A0'.repeat(spaces)}
+                        {line}
+                    </span>
+                );
+            }
+        }
+        return line;
+    };
+
+    const formatContent = (content) => {
+        return content.split('\n').map((line, index) => (
+            <React.Fragment key={index}>
+                {applyIndentation(line)}
+                <br />
+            </React.Fragment>
+        ));
+    };
+
     return (
         <>
             <div className="main-container mt-4">
 
                 {/* Main content */}
-                <div className="row text-center top-row-container">
-                    <div className="col-2">
-                        <button
-                            type="button"
-                            className="btn btn-outline-dark"
-                            disabled={id === 1}
-                            onClick={handlePrevClick}>
-                            Prev
-                        </button>
+                <div className='d-flex justify-content-between align-items-center mt-3 pb-4 border-bottom'>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        disabled={id === 1}
+                        onClick={handlePrevClick}>
+                        Prev
+                    </button>
+                    <div className='figure-name'>{capitalizeFirstLetter(figure_name)}</div>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        disabled={id === 201}
+                        onClick={handleNextClick}>
+                        Next
+                    </button>
+                </div>
+
+                {/* Definition Header */}
+                <div className='sticky-header'>
+                    <div className='left-extension'></div>
+                    <div className='d-flex justify-content-between align-items-center mt-3'>
+                        <h1 className='definition-title'>Definition</h1>
+                        <div><button type='button' className='btn btn-outline-dark edit-button' onClick={handleEditClick}>Edit</button></div>
                     </div>
-                    <div className="col-8 figure-name">
-                        {capitalizeFirstLetter(figure_name)}
-                    </div>
-                    <div className="col-2">
-                        <button
-                            type="button"
-                            className="btn btn-outline-dark"
-                            disabled={id === 201}
-                            onClick={handleNextClick}>
-                            Next
-                        </button>
-                    </div>
+                    <div className='right-extension'></div>
                 </div>
 
                 {/* Definition Card */}
-                <h1 className='definition-title mt-3'>Definition</h1>
-                <div className="definition-card container" onClick={toggleExpand}>
+                <div className="definition-card container">
                     <div className={`content ${isDefinitionExpanded ? 'expanded' : 'collapsed'}`}>
                         {isDefinitionExpanded ? formatContent(definition) : getPreviewText(definition)}
-                        {isDefinitionExpanded && (
-                            <button type='button' className='btn btn-outline-dark edit-button' onClick={handleEditClick}>Edit</button>
-                        )}
                     </div>
-                    <div className="toggle-indicator">
-                        {isDefinitionExpanded ? '...' : '...'}
-                    </div>
+                    <div className="toggle-indicator" onClick={toggleExpand}>...</div>
                 </div>
 
                 {/* Backdrop */}
@@ -161,12 +180,12 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                                     value={editableContent}
                                     onChange={(e) => setEditableContent(e.target.value)}
                                     rows={15}
-                                    style={{ resize: 'none' }}
+                                    style={{ resize: 'none', whiteSpace: 'pre-wrap' }}
                                 />
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={handleSaveChanges}>Save Changes</button>
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={handleCloseModal}>Close</button>
+                                <button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseModal}>Close</button>
+                                <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
                             </div>
                         </div>
                     </div>

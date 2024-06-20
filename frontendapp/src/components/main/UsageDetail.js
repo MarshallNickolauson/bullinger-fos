@@ -84,12 +84,19 @@ export default function UsageDetil({ record, onContentUpdate }) {
         <>
             <div className="main-container mt-4">
 
+                {/* Usage Header */}
+                <div className='sticky-header'>
+                    <div className='d-flex justify-content-between align-items-center mt-3'>
+                        <h1 className='usage-title mt-3'>Usages</h1>
+                        <button type='button' className='btn btn-outline-dark edit-button' onClick={handleEditClick}>Edit</button>
+                    </div>
+                </div>
+
+
                 {/* Usage Card */}
-                <h1 className='usage-title mt-3'>Usages</h1>
                 <div className="usage-card container">
                     <div className='content expanded'>
                         {formatContent(content)}
-                        <button type='button' className='btn btn-outline-dark edit-button' onClick={handleEditClick}>Edit</button>
                     </div>
                 </div>
 
@@ -114,8 +121,8 @@ export default function UsageDetil({ record, onContentUpdate }) {
                                 />
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={handleSaveChanges}>Save Changes</button>
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={handleCloseModal}>Close</button>
+                                <button button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseModal}>Close</button>
+                                <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
                             </div>
                         </div>
                     </div>
