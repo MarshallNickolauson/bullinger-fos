@@ -181,7 +181,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <button
                         type="button"
                         className="btn btn-outline-dark"
-                        disabled={id === 1}
+                        disabled={id === 1 || isEditModalOpen}
                         onClick={handlePrevClick}>
                         Prev
                     </button>
@@ -189,7 +189,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <button
                         type="button"
                         className="btn btn-outline-dark"
-                        disabled={id === 201}
+                        disabled={id === 201 || isEditModalOpen}
                         onClick={handleNextClick}>
                         Next
                     </button>
@@ -224,8 +224,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                                 className='definition-edit-box'
                                 value={editableContent}
                                 onChange={(e) => setEditableContent(e.target.value)}
-                                style={{ resize: 'none', whiteSpace: 'pre-wrap' }}
-                                rows={20}
+                                rows={15}
                             />
                         </div>
                     ) : <>

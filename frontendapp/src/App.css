@@ -63,10 +63,12 @@
     font-size: inherit;
     padding: 10px;
     box-sizing: border-box;
-    white-space: pre-wrap; /* Ensures whitespace handling is consistent */
+    white-space: pre-wrap;
     border-radius: 4px;
-    border: 2px solid #cecece;
-    background-color: #f4f4f4;
+    border: 1px solid #cecece;
+    background-color: #fafafa;
+    resize: none;
+    outline: none;
 }
 
 .definition-title,
