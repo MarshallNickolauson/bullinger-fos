@@ -7,17 +7,20 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     const figure_name = record['figure_name'];
     const definition = record['content'] || '';
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
     const [editableContent, setEditableContent] = useState('');
+    const [editableRules, setEditableRules] = useState('');
 
     const navigate = useNavigate();
 
     useEffect(() => {
         setEditableContent(record['content']);
+        setEditableRules(record['custom_rules']);
     }, [record]);
 
     useEffect(() => {
-        if (isModalOpen) {
+        if (isEditModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
@@ -25,7 +28,26 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
         return () => {
             document.body.style.overflow = 'auto';
         };
-    }, [isModalOpen]);
+    }, [isEditModalOpen]);
+    
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+          if (event.key === 'Escape') {
+            setIsEditModalOpen(false);
+            setIsRuleModalOpen(false);
+          }
+        };
+
+        if (isEditModalOpen || isRuleModalOpen) {
+          document.addEventListener('keydown', handleKeyDown);
+        } else {
+          document.removeEventListener('keydown', handleKeyDown);
+        }
+    
+        return () => {
+          document.removeEventListener('keydown', handleKeyDown);
+        };
+      }, [isEditModalOpen, isRuleModalOpen]);
 
     const handlePrevClick = () => {
         const prevId = id - 1;
@@ -57,11 +79,20 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
     const handleEditClick = (event) => {
         event.stopPropagation();
-        setIsModalOpen(true);
+        setIsEditModalOpen(true);
     }
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
+    const handleCloseEditModal = () => {
+        setIsEditModalOpen(false);
+    }
+
+    const handleRuleClick = (event) => {
+        event.stopPropagation();
+        setIsRuleModalOpen(true);
+    }
+
+    const handleCloseRuleModal = () => {
+        setIsRuleModalOpen(false);
     }
 
     const handleSaveChanges = () => {
@@ -77,7 +108,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 "book_position": record['book_position'],
                 "figure_name": record['figure_name'],
                 "content": editableContent,
-                "custom_rules": editableContent == '' ? '//Code for react formatting' : editableContent,
+                "custom_rules": editableRules == '' ? '//Code for react formatting' : editableRules,
             }),
         }).then(response => {
             if (!response.ok) {
@@ -87,29 +118,44 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
             }
             return response.json();
         }).then(updatedRecord => {
-            setIsModalOpen(false);
+            setIsEditModalOpen(false);
+            setIsRuleModalOpen(false);
             onContentUpdate(updatedRecord);
         });
     };
 
+    const parseCustomRules = (rulesString) => {
+        try {
+            return rulesString.trim().split('\n').map(ruleString => {
+                const parts = ruleString.split(';');
+                const patternPart = parts.find(part => part.startsWith('pattern:')).split('pattern:')[1].trim();
+                const spacesPart = parts.find(part => part.startsWith('spaces:')).split('spaces:')[1].trim();
+                return {
+                    pattern: new RegExp(patternPart.replace(/^\/|\/$/g, '')),
+                    spaces: parseInt(spacesPart, 10)
+                };
+            });
+        } catch (error) {
+            console.error('Error parsing custom rules:', error);
+            return [];
+        }
+    };
+    
     const applyIndentation = (line) => {
-        const indentPatterns = [
-            { pattern: /^(I|V|X)+\. /, spaces: 5 },
-            { pattern: /^\d\. /, spaces: 10 },
-            { pattern: /^[a-z]\. /, spaces: 15 },
-            { pattern: /^(i|v|x)+\) /, spaces: 20 }
-        ];
-
-        for (const { pattern, spaces } of indentPatterns) {
+        const customRules = parseCustomRules(record['custom_rules']);
+        //console.log('Custom Rules:', customRules);
+        
+        for (const { pattern, spaces } of customRules) {
             if (pattern.test(line)) {
                 return (
-                    <span>
+                    <span key={line}>
                         {'\u00A0'.repeat(spaces)}
                         {line}
                     </span>
                 );
             }
         }
+        
         return line;
     };
 
@@ -149,7 +195,10 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 <div className='sticky-header'>
                     <div className='d-flex justify-content-between align-items-center mt-3'>
                         <h1 className='definition-title'>Definition</h1>
-                        <div><button type='button' className='btn btn-outline-dark edit-button' onClick={handleEditClick}>Edit</button></div>
+                        <div>
+                            <button type='button' className='btn btn-outline-dark edit-button mx-1' onClick={handleEditClick}>Edit</button>
+                            <button type='button' className='btn btn-outline-dark edit-button' onClick={handleRuleClick}>Rule</button>
+                        </div>
                     </div>
                 </div>
 
@@ -161,16 +210,17 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <div className="toggle-indicator" onClick={toggleExpand}>...</div>
                 </div>
 
-                {/* Backdrop */}
-                {isModalOpen && <div className="modal-backdrop show"></div>}
+                {/* Backdrops */}
+                {isEditModalOpen && <div className="modal-backdrop show"></div>}
+                {isRuleModalOpen && <div className="modal-backdrop show"></div>}
 
-                {/* Modal */}
-                <div className={`modal fade ${isModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isModalOpen ? 'block' : 'none' }}>
+                {/* Edit Modal */}
+                <div className={`modal fade ${isEditModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isEditModalOpen ? 'block' : 'none' }}>
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title">Edit Definition Content</h5>
-                                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseModal}></button>
+                                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseEditModal}></button>
                             </div>
                             <div className="modal-body">
                                 <textarea
@@ -182,7 +232,32 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                                 />
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseModal}>Close</button>
+                                <button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseEditModal}>Close</button>
+                                <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Rule Modal */}
+                <div className={`modal fade ${isRuleModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isRuleModalOpen ? 'block' : 'none' }}>
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Edit Formatting</h5>
+                                <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close" onClick={handleCloseRuleModal}></button>
+                            </div>
+                            <div className="modal-body">
+                                <textarea
+                                    className="form-control"
+                                    value={editableRules}
+                                    onChange={(e) => setEditableRules(e.target.value)}
+                                    rows={15}
+                                    style={{ resize: 'none', whiteSpace: 'pre-wrap' }}
+                                />
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseRuleModal}>Close</button>
                                 <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
                             </div>
                         </div>
