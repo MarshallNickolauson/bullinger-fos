@@ -35,7 +35,6 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
             if (event.key === 'Escape') {
                 setIsEditing(false);
                 setIsRuleModalOpen(false);
-                toggleExpand();
             }
         };
 
@@ -80,7 +79,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
     const handleEditClick = (event) => {
         event.stopPropagation();
-        toggleExpand();
+        setDefinitionExpand(true);
         setIsEditing(true);
     }
 

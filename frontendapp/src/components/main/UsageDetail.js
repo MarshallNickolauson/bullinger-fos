@@ -1,20 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import config from '../../config/config';
 
 export default function UsageDetil({ record, onContentUpdate }) {
     const id = record['id'];
     const content = record['content'] || '';
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
     const [editableContent, setEditableContent] = useState('');
+    const [editableRules, setEditableRules] = useState('');
 
     useEffect(() => {
         setEditableContent(record['content']);
+        setEditableRules(record['custom_rules']);
     }, [record]);
 
     useEffect(() => {
-        if (isModalOpen) {
+        if (isRuleModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
@@ -22,7 +24,7 @@ export default function UsageDetil({ record, onContentUpdate }) {
         return () => {
             document.body.style.overflow = 'auto';
         };
-    }, [isModalOpen]);
+    }, [isRuleModalOpen]);
 
     const capitalizeFirstLetter = (string) => {
         if (!string) return '';
@@ -45,11 +47,11 @@ export default function UsageDetil({ record, onContentUpdate }) {
 
     const handleEditClick = (event) => {
         event.stopPropagation();
-        setIsModalOpen(true);
+        setIsEditing(true);
     }
 
     const handleCloseModal = () => {
-        setIsModalOpen(false);
+        setIsEditing(false);
     }
 
     const handleSaveChanges = () => {
@@ -75,7 +77,7 @@ export default function UsageDetil({ record, onContentUpdate }) {
             }
             return response.json();
         }).then(updatedRecord => {
-            setIsModalOpen(false);
+            setIsEditing(false);
             onContentUpdate(updatedRecord);
         });
     };
@@ -101,10 +103,10 @@ export default function UsageDetil({ record, onContentUpdate }) {
                 </div>
 
                 {/* Backdrop */}
-                {isModalOpen && <div className="modal-backdrop show"></div>}
+                {isEditing && <div className="modal-backdrop show"></div>}
 
                 {/* Modal */}
-                <div className={`modal fade ${isModalOpen ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isModalOpen ? 'block' : 'none' }}>
+                <div className={`modal fade ${isEditing ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: isEditing ? 'block' : 'none' }}>
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
