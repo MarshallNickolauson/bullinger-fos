@@ -25,26 +25,28 @@ export default function SideNavbar({ data }) {
   }
 
   return (
-    <div className="fixed-side pt-5 mt-3 side-navbar">
-      <nav className="nav flex-column">
-        <button type="button" className="btn btn-outline-dark mx-1 mb-1" onClick={handleSortClick}>
-          {bookSort ? 'Alphabetical' : 'Book Appearance'}
-        </button>
-        <Link to='/introduction' className="book-section-link">Introduction</Link>
-        {bookSort ? (
-          <>
-            {sortedDefinitionData.map((item, index) => (
-              <Link to={`/figures/${item.id}`} className="book-section-link" key={index}>{capitalizeFirstLetter(item.figure_name)}</Link>
-            ))}
-          </>
-        ) : (
-          <>
-            {data.map((item, index) => (
-              <Link to={`/figures/${item.id}`} className="book-section-link" key={index}>{capitalizeFirstLetter(item.figure_name)}</Link>
-            ))}
-          </>
-        )}
-      </nav>
-    </div>
+    <nav className="side-navbar-container">
+      <div className="fixed-side side-navbar">
+        <nav className="nav flex-column">
+          <button type="button" className="btn btn-outline-dark mx-1 mb-1" onClick={handleSortClick}>
+            {bookSort ? 'Alphabetical' : 'Book Appearance'}
+          </button>
+          <Link to='/introduction' className="book-section-link">Introduction</Link>
+          {bookSort ? (
+            <>
+              {sortedDefinitionData.map((item, index) => (
+                <Link to={`/figures/${item.id}`} className="book-section-link" key={index}>{capitalizeFirstLetter(item.figure_name)}</Link>
+              ))}
+            </>
+          ) : (
+            <>
+              {data.map((item, index) => (
+                <Link to={`/figures/${item.id}`} className="book-section-link" key={index}>{capitalizeFirstLetter(item.figure_name)}</Link>
+              ))}
+            </>
+          )}
+        </nav>
+      </div>
+    </nav>
   );
 }
