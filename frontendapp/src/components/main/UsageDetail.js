@@ -134,11 +134,11 @@ export default function UsageDetil({ record, onContentUpdate }) {
                 </div>
 
                 {/* Usage Card */}
-                <div className="content-card container">
+                <div className="content-card usage-card container">
                     {isEditing ? (
                         <div className='content expanded'>
                             <textarea
-                                className='definition-edit-box'
+                                className='content-edit-box'
                                 value={editableContent}
                                 onChange={(e) => setEditableContent(e.target.value)}
                                 rows={20}

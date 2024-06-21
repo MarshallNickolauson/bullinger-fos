@@ -80,7 +80,7 @@ function App() {
           <div className="col-2 vh-100">
             <SideNavbar data={definitionData} />
           </div>
-          <main className="col-10 pt-5">
+          <main className="col-10 main pt-5">
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
