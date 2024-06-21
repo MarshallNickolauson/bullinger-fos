@@ -16,7 +16,7 @@ export default function TopNavbar() {
                     <div className="col-2">
                         <Link className="app-logo" to='/'>Bullinger FoS</Link>
                     </div>
-                    <div className="col-10 nav-space">
+                    <div className="col-10">
                         <nav className={`nav ${isNavVisible ? 'nav-visible' : ''}`}>
                             <ul className="nav-list">
                                 <li className="nav-item"><Link to="/">Home</Link></li>
