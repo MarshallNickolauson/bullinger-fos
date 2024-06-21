@@ -1,3 +1,9 @@
+:root {
+    --light-color: #F8F8EC;
+    --main-color: #677A9B;
+    --dark-color: #1D3F62;
+}
+
 .side-navbar-container {
     border-right: 2px solid #cecece;
     height: 100vh;
@@ -35,18 +41,17 @@
 .book-section-link {
     text-align: center;
     text-decoration: none;
-    color: rgb(51, 51, 51);
+    color: var(--dark-color);
     padding: 0.5rem 0;
     margin: 0 0.25rem;
     border-radius: 4px;
 }
 
 .book-section-link:hover {
-    text-decoration: underline;
+    border: 1px solid var(--dark-color);
 }
 
 .book-section-link.active-link {
     font-weight: bold;
-    color: #000;
-    border: 1px solid #000000;
+    border: 1px solid var(--dark-color);
 }

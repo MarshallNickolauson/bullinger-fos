@@ -185,7 +185,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 <div className='d-flex justify-content-between align-items-center mt-3 pb-4 border-bottom'>
                     <button
                         type="button"
-                        className="btn btn-outline-dark"
+                        className="btn-dark-blue px-3"
                         disabled={id === 1 || isEditing}
                         onClick={handlePrevClick}>
                         Prev
@@ -193,7 +193,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                     <div className='figure-name'>{capitalizeFirstLetter(figure_name)}</div>
                     <button
                         type="button"
-                        className="btn btn-outline-dark"
+                        className="btn-dark-blue px-3"
                         disabled={id === 201 || isEditing}
                         onClick={handleNextClick}>
                         Next
@@ -207,13 +207,13 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                         <div>
                             {isEditing ? (
                                 <>
-                                    <button type="button" className="btn btn-outline-dark mx-1" data-dismiss="modal" onClick={handleCloseEdit}>Close</button>
-                                    <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
+                                    <button type="button" className="btn-dark-blue px-3 mx-1" data-dismiss="modal" onClick={handleCloseEdit}>Close</button>
+                                    <button type="button" className="btn-dark-blue px-3" onClick={handleSaveChanges}>Save Changes</button>
                                 </>
                             ) : (
                                 <>
-                                    <button type='button' className='btn btn-outline-dark edit-button mx-1' onClick={handleEditClick}>Edit</button>
-                                    <button type='button' className='btn btn-outline-dark edit-button' onClick={handleRuleClick}>Rule</button>
+                                    <button type='button' className='btn-dark-blue px-3 edit-button mx-1' onClick={handleEditClick}>Edit</button>
+                                    <button type='button' className='btn-dark-blue px-3 edit-button' onClick={handleRuleClick}>Rule</button>
                                 </>
                             )}
                         </div>

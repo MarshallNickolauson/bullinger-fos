@@ -1,0 +1,19 @@
+:root {
+    --light-color: #F8F8EC;
+    --main-color: #677A9B;
+    --dark-color: #1D3F62;
+}
+
+.btn-dark-blue {
+    color: var(--dark-color);
+    border: 1px solid var(--dark-color);
+    padding: 6px 0px;
+    border-radius: 5px;
+    background-color: white;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.btn-dark-blue:hover {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}

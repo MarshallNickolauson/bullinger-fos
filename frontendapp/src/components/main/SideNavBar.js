@@ -34,7 +34,7 @@ export default function SideNavbar({ data }) {
     <nav className="side-navbar-container">
       <div className="fixed-side side-navbar">
         <div className="sticky-button-container">
-          <button type="button" className="btn btn-outline-dark mx-1 mb-1" onClick={handleSortClick}>
+          <button type="button" className="btn-dark-blue mx-1 mb-1" onClick={handleSortClick}>
             {bookSort ? 'Alphabetical' : 'Book Appearance'}
           </button>
         </div>

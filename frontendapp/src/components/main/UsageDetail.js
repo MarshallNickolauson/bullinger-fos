@@ -120,13 +120,13 @@ export default function UsageDetil({ record, onContentUpdate }) {
                         <div>
                             {isEditing ? (
                                 <>
-                                    <button type="button" className="btn btn-outline-dark mx-1" data-dismiss="modal" onClick={handleCloseEdit}>Close</button>
-                                    <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
+                                    <button type="button" className="btn-dark-blue px-3 mx-1" data-dismiss="modal" onClick={handleCloseEdit}>Close</button>
+                                    <button type="button" className="btn-dark-blue px-3" onClick={handleSaveChanges}>Save Changes</button>
                                 </>
                             ) : (
                                 <>
-                                    <button type='button' className='btn btn-outline-dark edit-button mx-1' onClick={handleEditClick}>Edit</button>
-                                    <button type='button' className='btn btn-outline-dark edit-button' onClick={handleRuleClick}>Rule</button>  
+                                    <button type='button' className='btn-dark-blue px-3 edit-button mx-1' onClick={handleEditClick}>Edit</button>
+                                    <button type='button' className='btn-dark-blue px-3 edit-button' onClick={handleRuleClick}>Rule</button>  
                                 </>
                             )}
                         </div>
