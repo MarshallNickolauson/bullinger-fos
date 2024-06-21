@@ -1,3 +1,9 @@
+:root {
+    --light-color: #F8F8EC;
+    --main-color: #677A9B;
+    --dark-color: #1D3F62;
+}
+
 .app-header {
     display: flex;
     align-items: center;
@@ -69,6 +75,10 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-right: 10px;
+}
+
+.search-input:focus {
+    outline: 2px solid var(--main-color);
 }
 
 .search-button {

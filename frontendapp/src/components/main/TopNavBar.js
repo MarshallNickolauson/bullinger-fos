@@ -25,7 +25,8 @@ export default function TopNavbar() {
                             <div className="search-bar">
                                 <input type="text" className="search-input" placeholder="Search..." />
                                 <button className="search-button">Search</button>
-                            </div>                        </nav>
+                            </div>                        
+                        </nav>
                         <button className="nav-toggle" onClick={toggleNav}>
                             &#9776;
                         </button>
