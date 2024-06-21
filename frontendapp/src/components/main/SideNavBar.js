@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function SideNavbar({ data }) {
 
   const [bookSort, setBookSort] = useState(true);
+  const location = useLocation();
 
   const sortedDefinitionData = [...data].sort((a, b) => {
     if (a.figure_name < b.figure_name) {
@@ -24,24 +25,34 @@ export default function SideNavbar({ data }) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  const isActiveLink = (path) => {
+    return location.pathname === path ? 'active-link' : '';
+  }
+
   return (
     <nav className="side-navbar-container">
       <div className="fixed-side side-navbar">
-        <nav className="nav flex-column">
+        <div className="sticky-button-container">
           <button type="button" className="btn btn-outline-dark mx-1 mb-1" onClick={handleSortClick}>
             {bookSort ? 'Alphabetical' : 'Book Appearance'}
           </button>
-          <Link to='/introduction' className="book-section-link">Introduction</Link>
+        </div>
+        <nav className="nav flex-column">
+          <Link to='/introduction' className={`book-section-link ${isActiveLink(`/introduction`)}`}>Introduction</Link>
           {bookSort ? (
             <>
               {sortedDefinitionData.map((item, index) => (
-                <Link to={`/figures/${item.id}`} className="book-section-link" key={index}>{capitalizeFirstLetter(item.figure_name)}</Link>
+                <Link to={`/figures/${item.id}`} className={`book-section-link ${isActiveLink(`/figures/${item.id}`)}`} key={index}>
+                {capitalizeFirstLetter(item.figure_name)}
+              </Link>
               ))}
             </>
           ) : (
             <>
               {data.map((item, index) => (
-                <Link to={`/figures/${item.id}`} className="book-section-link" key={index}>{capitalizeFirstLetter(item.figure_name)}</Link>
+                <Link to={`/figures/${item.id}`} className={`book-section-link ${isActiveLink(`/figures/${item.id}`)}`} key={index}>
+                {capitalizeFirstLetter(item.figure_name)}
+              </Link>
               ))}
             </>
           )}
