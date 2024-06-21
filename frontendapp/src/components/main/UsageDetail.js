@@ -14,7 +14,11 @@ export default function UsageDetil({ record, onContentUpdate }) {
     }
 
     useEffect(() => {
-        setEditableContent(record['content']);
+        if (record['content'] == null) {
+            setEditableContent('');
+        } else {
+            setEditableContent(record['content']);
+        }
         setEditableRules(record['custom_rules']);
     }, [record]);
 
