@@ -48,10 +48,10 @@
 }
 
 .book-section-link:hover {
-    border: 1px solid var(--dark-color);
+    background-color:#677a9b27;
 }
 
 .book-section-link.active-link {
     font-weight: bold;
-    border: 1px solid var(--dark-color);
+    background-color: #677a9b27;
 }
