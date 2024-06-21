@@ -115,7 +115,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 "book_position": record['book_position'],
                 "figure_name": record['figure_name'],
                 "content": editableContent,
-                "custom_rules": editableRules == '' ? '//Code for react formatting' : editableRules,
+                "custom_rules": editableRules == '' ? '[]' : editableRules,
             }),
         }).then(response => {
             if (!response.ok) {
