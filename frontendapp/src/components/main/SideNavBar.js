@@ -35,12 +35,12 @@ export default function SideNavbar({ data }) {
       <div className="fixed-side side-navbar">
         <div className="sticky-button-container">
           <button type="button" className="btn-dark-blue mx-1 mb-1" onClick={handleSortClick}>
-            {bookSort ? 'Alphabetical' : 'Book Appearance'}
+            {!bookSort ? 'Alphabetical' : 'Book Appearance'}
           </button>
         </div>
         <nav className="nav flex-column">
           <Link to='/introduction' className={`book-section-link ${isActiveLink(`/introduction`)}`}>Introduction</Link>
-          {bookSort ? (
+          {!bookSort ? (
             <>
               {sortedDefinitionData.map((item, index) => (
                 <Link to={`/figures/${item.id}`} className={`book-section-link ${isActiveLink(`/figures/${item.id}`)}`} key={index}>

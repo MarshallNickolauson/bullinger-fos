@@ -172,8 +172,8 @@ export default function UsageDetil({ record, onContentUpdate }) {
                                 />
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-dark" data-dismiss="modal" onClick={handleCloseRuleModal}>Close</button>
-                                <button type="button" className="btn btn-success" onClick={handleSaveChanges}>Save Changes</button>
+                                <button type="button" className="btn-dark-blue px-3 edit-button" data-dismiss="modal" onClick={handleCloseRuleModal}>Close</button>
+                                <button type="button" className="btn-dark-blue px-3 edit-button" onClick={handleSaveChanges}>Save Changes</button>
                             </div>
                         </div>
                     </div>
