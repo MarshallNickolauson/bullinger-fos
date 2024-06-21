@@ -1,5 +1,15 @@
-.top-navbar {
+.app-header {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 5px 30px;
+    color: black;
     border-bottom: 2px solid #cecece;
+}
+
+.app-logo {
+    text-decoration: none;
+    color: black;
 }
 
 .nav-toggle {
@@ -11,11 +21,132 @@
     cursor: pointer;
 }
 
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
 
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
+.nav-item {
+    margin: 0;
+}
+
+.nav-item a {
+    display: block;
+    padding: 10px 20px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: black;
+    box-sizing: border-box;
+}
+
+.nav-item:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.search-bar:hover {
+    background-color: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.search-button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #f1f1f1;
+}
 
 @media (max-width: 992px) {
+
+    .app-header {
+        padding: 12px 30px;
+    }
+
+    .nav {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: white;
+        width: 50%;
+        text-align: left;
+        z-index: 1;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .nav-visible {
+        max-height: 500px;
+    }
+
     .nav-toggle {
         display: block;
-      }
+        position: absolute;
+        top: 0;
+        right: 5%;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-item {
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .nav-item a {
+        display: block;
+        padding: 10px 20px;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: black;
+        box-sizing: border-box;
+    }
+
+    .nav-item:hover {
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
 }
