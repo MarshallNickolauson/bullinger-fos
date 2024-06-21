@@ -1,4 +1,4 @@
-import './App.css';
+import '../src/css/App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import FiguresDev from './components/dev/FiguresDev';
 import FigureDev from './components/dev/FigureDev';

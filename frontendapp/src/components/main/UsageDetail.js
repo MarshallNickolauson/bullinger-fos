@@ -116,7 +116,7 @@ export default function UsageDetil({ record, onContentUpdate }) {
                 {/* Usage Header */}
                 <div className='sticky-header'>
                     <div className='d-flex justify-content-between align-items-center mt-3'>
-                        <h1 className='usage-title'>Usages</h1>
+                        <h1 className='content-title'>Usages</h1>
                         <div>
                             {isEditing ? (
                                 <>
@@ -134,7 +134,7 @@ export default function UsageDetil({ record, onContentUpdate }) {
                 </div>
 
                 {/* Usage Card */}
-                <div className="usage-card container">
+                <div className="content-card container">
                     {isEditing ? (
                         <div className='content expanded'>
                             <textarea

@@ -203,7 +203,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 {/* Definition Header */}
                 <div className='sticky-header'>
                     <div className='d-flex justify-content-between align-items-center mt-3'>
-                        <h1 className='definition-title'>Definition</h1>
+                        <h1 className='content-title'>Definition</h1>
                         <div>
                             {isEditing ? (
                                 <>
@@ -221,7 +221,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 </div>
 
                 {/* Definition Card */}
-                <div className="definition-card container">
+                <div className="content-card container">
                     {isEditing ? (
                         <div className='content expanded'>
                             <textarea
