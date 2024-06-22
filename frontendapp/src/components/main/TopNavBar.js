@@ -22,10 +22,12 @@ export default function TopNavbar() {
                                 <li className="nav-item"><Link to="/">Home</Link></li>
                                 <li className="nav-item"><Link to="/about">About</Link></li>
                             </ul>
-                            <div className="search-bar">
+
+                            {/* <div className="search-bar">
                                 <input type="text" className="search-input" placeholder="Search..." />
                                 <button className="search-button">Search</button>
-                            </div>                        
+                            </div> */}
+                            
                         </nav>
                         <button className="nav-toggle" onClick={toggleNav}>
                             &#9776;
