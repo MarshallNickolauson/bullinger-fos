@@ -12,6 +12,25 @@ function App() {
   const [definitionData, setDefinitionData] = useState([]);
   const [usageData, setUsageData] = useState([]);
 
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     const definitionApiEndpoint = `${config.apiBaseUrl}/definitions`;
     const usageApiEndpoint = `${config.apiBaseUrl}/usages`;
@@ -74,11 +93,11 @@ function App() {
     <Router>
       <div>
         <TopNavbar />
-        <div className="row">
-          <div className="col-2 vh-100">
+        <div className={windowSize.width < 992 ? '' : 'row'}>
+          <div className={`${windowSize.width < 992 ? '' : 'col-2 vh-100'}`}>
             <SideNavbar data={definitionData} />
           </div>
-          <main className="col-10 main pt-5">
+          <main className={`${windowSize.width < 992 ? '' : 'col-10'} main pt-5`}>
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />

@@ -70,7 +70,7 @@
 }
 
 .content-card .content.expanded {
-    max-height: 10000px;
+    max-height: 100%;
     width: 100%;    
 }
 

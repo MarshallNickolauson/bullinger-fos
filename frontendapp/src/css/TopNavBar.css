@@ -133,7 +133,6 @@ footer {
 
     .nav-visible {
         max-height: 150px;
-        border-top: 2px solid var(--dark-color);
     }
 
     .nav-toggle {

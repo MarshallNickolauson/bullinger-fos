@@ -21,3 +21,9 @@
     background-color: var(--dark-color);
     color: var(--light-color);
 }
+
+@media (max-width: 992px) {
+    .main {
+        width: 100%;
+    }
+}

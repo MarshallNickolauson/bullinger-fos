@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import '../../css/SideNavBar.css'
 
@@ -6,6 +6,34 @@ export default function SideNavbar({ data }) {
 
   const [bookSort, setBookSort] = useState(true);
   const location = useLocation();
+  const [isNavVisible, setIsNavVisible] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavVisible(!isNavVisible);
+  }
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const sortedDefinitionData = [...data].sort((a, b) => {
     if (a.figure_name < b.figure_name) {
@@ -31,34 +59,39 @@ export default function SideNavbar({ data }) {
   }
 
   return (
-    <nav className="side-navbar-container">
-      <div className="fixed-side side-navbar">
-        <div className="sticky-button-container">
-          <button type="button" className="btn-dark-blue mx-1 mb-1" onClick={handleSortClick}>
-            {!bookSort ? 'Alphabetical' : 'Book Appearance'}
-          </button>
+    <>
+      <button className="side-nav-toggle" onClick={toggleNav}>
+        &#9776;
+      </button>
+      <nav className={`side-navbar-container ${isNavVisible ? 'side-visible-1' : ''}`}>
+        <div className={`fixed-side side-navbar ${isNavVisible ? 'side-visible-2' : ''}`}>
+          <div className={`sticky-button-container ${isNavVisible ? 'side-visible-2' : ''}`}>
+            <button type="button" className="btn-dark-blue mx-1 mb-1" onClick={handleSortClick}>
+              {!bookSort ? 'Alphabetical' : 'Book Appearance'}
+            </button>
+          </div>
+          <nav className={`${windowSize.width < 992 ? 'column-nav' : 'nav flex-column'}`}>
+            <Link to='/introduction' className={`book-section-link ${isNavVisible ? 'side-visible-3' : ''} ${isActiveLink(`/introduction`)}`} onClick={scrollToTop}>Introduction</Link>
+            {!bookSort ? (
+              <>
+                {sortedDefinitionData.map((item, index) => (
+                  <Link to={`/figures/${item.id}`} className={`book-section-link ${isNavVisible ? 'side-visible-3' : ''} ${isActiveLink(`/figures/${item.id}`)}`} key={index} onClick={scrollToTop}>
+                  {capitalizeFirstLetter(item.figure_name)}
+                </Link>
+                ))}
+              </>
+            ) : (
+              <>
+                {data.map((item, index) => (
+                  <Link to={`/figures/${item.id}`} className={`book-section-link ${isNavVisible ? 'side-visible-3' : ''} ${isActiveLink(`/figures/${item.id}`)}`} key={index} onClick={scrollToTop}>
+                  {capitalizeFirstLetter(item.figure_name)}
+                </Link>
+                ))}
+              </>
+            )}
+          </nav>
         </div>
-        <nav className="nav flex-column">
-          <Link to='/introduction' className={`book-section-link ${isActiveLink(`/introduction`)}`}>Introduction</Link>
-          {!bookSort ? (
-            <>
-              {sortedDefinitionData.map((item, index) => (
-                <Link to={`/figures/${item.id}`} className={`book-section-link ${isActiveLink(`/figures/${item.id}`)}`} key={index}>
-                {capitalizeFirstLetter(item.figure_name)}
-              </Link>
-              ))}
-            </>
-          ) : (
-            <>
-              {data.map((item, index) => (
-                <Link to={`/figures/${item.id}`} className={`book-section-link ${isActiveLink(`/figures/${item.id}`)}`} key={index}>
-                {capitalizeFirstLetter(item.figure_name)}
-              </Link>
-              ))}
-            </>
-          )}
-        </nav>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
