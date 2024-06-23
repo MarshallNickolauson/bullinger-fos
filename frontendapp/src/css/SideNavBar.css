@@ -9,8 +9,7 @@
     height: 100vh;
     width: 16%;
     position: fixed;
-    padding-right: 6px;
-    background-color: var(--light-color );
+    background-color: var(--light-color);
 }
 
 .side-nav-toggle {
@@ -41,7 +40,7 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: var(--light-color );
+    background-color: var(--light-color);
 }
 
 .sticky-button-container button {
@@ -69,8 +68,9 @@
 @media (max-width: 992px) {
     .side-navbar-container {
         z-index: 1100;
+        border-right: none;
         width: 0px;
-        transition: width 0.3s ease-in-out;
+        transition: width 0.3s ease-in-out, border-right 0.3s ease-in-out;
     }
     .sticky-button-container,
     .side-navbar {
@@ -103,6 +103,7 @@
     }
     .side-visible-1 {
         width: 200px;
+        border-right: 2px solid var(--dark-color);
     }
     .side-visible-2 {
         width: 195px;
