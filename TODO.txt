@@ -1,7 +1,0 @@
-build header and footer
-
-design wireframes for desktop and mobile versions
-
-Make definitions page a list of just the names in alphabetical order
-
-Add bootstrap and style with that
