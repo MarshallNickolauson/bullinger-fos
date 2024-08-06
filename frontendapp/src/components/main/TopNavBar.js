@@ -6,8 +6,9 @@ export default function TopNavbar() {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const navRef = useRef(null);
 
-    const toggleNav = () => {
-      setIsNavVisible(!isNavVisible);
+    const toggleNav = (event) => {
+        event.stopPropagation();
+        setIsNavVisible(!isNavVisible);
     }
 
     const closeNav = () => {
@@ -21,10 +22,10 @@ export default function TopNavbar() {
     };
 
     useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('click', handleClickOutside);
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('click', handleClickOutside);
         };
     }, []);
 

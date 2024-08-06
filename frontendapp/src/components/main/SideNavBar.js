@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import '../../css/SideNavBar.css'
 
@@ -7,10 +7,30 @@ export default function SideNavbar({ data }) {
   const [bookSort, setBookSort] = useState(true);
   const location = useLocation();
   const [isNavVisible, setIsNavVisible] = useState(false);
+  const navRef = useRef(null);
 
-  const toggleNav = () => {
+  const toggleNav = (event) => {
+    event.stopPropagation();
     setIsNavVisible(!isNavVisible);
   }
+
+  const closeNav = () => {
+    setIsNavVisible(false);
+  }
+
+  const handleClickOutside = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      closeNav();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -63,7 +83,7 @@ export default function SideNavbar({ data }) {
       <button className="side-nav-toggle" onClick={toggleNav}>
         &#9776;
       </button>
-      <nav className={`side-navbar-container ${isNavVisible ? 'side-visible-1' : ''}`}>
+      <nav ref={navRef} className={`side-navbar-container ${isNavVisible ? 'side-visible-1' : ''}`}>
         <div className={`fixed-side side-navbar ${isNavVisible ? 'side-visible-2' : ''}`}>
           <div className={`sticky-button-container ${isNavVisible ? 'side-visible-2' : ''}`}>
             <button type="button" className="btn-dark-blue mx-1 mb-1" onClick={handleSortClick}>
@@ -76,16 +96,16 @@ export default function SideNavbar({ data }) {
               <>
                 {sortedDefinitionData.map((item, index) => (
                   <Link to={`/figures/${item.id}`} className={`book-section-link ${isNavVisible ? 'side-visible-3' : ''} ${isActiveLink(`/figures/${item.id}`)}`} key={index} onClick={scrollToTop}>
-                  {capitalizeFirstLetter(item.figure_name)}
-                </Link>
+                    {capitalizeFirstLetter(item.figure_name)}
+                  </Link>
                 ))}
               </>
             ) : (
               <>
                 {data.map((item, index) => (
                   <Link to={`/figures/${item.id}`} className={`book-section-link ${isNavVisible ? 'side-visible-3' : ''} ${isActiveLink(`/figures/${item.id}`)}`} key={index} onClick={scrollToTop}>
-                  {capitalizeFirstLetter(item.figure_name)}
-                </Link>
+                    {capitalizeFirstLetter(item.figure_name)}
+                  </Link>
                 ))}
               </>
             )}
