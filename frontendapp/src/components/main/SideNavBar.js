@@ -53,6 +53,7 @@ export default function SideNavbar({ data }) {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeNav();
   };
 
   const sortedDefinitionData = [...data].sort((a, b) => {
