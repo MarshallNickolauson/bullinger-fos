@@ -16,6 +16,7 @@
 .app-logo {
     text-decoration: none;
     color: white;
+    align-items: center;
 }
 
 .nav-toggle {
@@ -107,14 +108,27 @@ footer {
     background-color: #f1f1f1;
 }
 
+.app-logo-centered {
+    display: none;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
 @media (max-width: 992px) {
 
     .app-logo { 
-        color: var(--main-color);
+        display: none;
+    }
+
+    .app-logo-centered {
+        display: block;
+        font-size: 1rem;
     }
 
     .app-header {
         padding: 12px 30px;
+        height: 50px;
     }
 
     .nav {

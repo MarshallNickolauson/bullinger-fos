@@ -95,7 +95,7 @@
 
     .side-nav-toggle {
         display: block;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 10px;
         z-index: 1200;

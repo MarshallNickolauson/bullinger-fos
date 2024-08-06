@@ -13,6 +13,7 @@ export default function TopNavbar() {
         <header className="fixed-top app-header">
             <div className="container-fluid">
                 <div className="row align-items-center">
+                    <Link className="app-logo-centered" to='/'>Bullinger FoS</Link>
                     <div className="col-2">
                         <Link className="app-logo" to='/'>Bullinger FoS</Link>
                     </div>
