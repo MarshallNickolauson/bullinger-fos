@@ -7,6 +7,7 @@ import AboutPage from './components/main/AboutPage';
 import { useEffect, useState } from 'react';
 import config from './config/config';
 import Figure from './components/main/Figure';
+import IntroductionPage from './components/main/IntroductionPage';
 
 function App() {
   const [definitionData, setDefinitionData] = useState([]);
@@ -101,6 +102,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
+              <Route path='/introduction' element={<IntroductionPage />} />
               <Route path='/figures/:id' element={<Figure definitions={definitionData} usages={usageData} onUpdateDefinition={handleUpdateDefinition} onUpdateUsage={handleUpdateUsage} />} />
             </Routes>
           </main>
