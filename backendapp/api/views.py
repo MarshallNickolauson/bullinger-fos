@@ -5,6 +5,10 @@ from django.shortcuts import render
 from .models import *
 from .serializers import *
 
+class IntroductionView(ModelViewSet):
+    queryset = Introduction.objects.all()
+    serializer_class = IntroductionSerializer
+
 class DefinitionView(ModelViewSet):
     queryset = Definition.objects.all()
     serializer_class = DefinitionSerializer

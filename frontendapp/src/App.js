@@ -12,6 +12,7 @@ import IntroductionPage from './components/main/IntroductionPage';
 function App() {
   const [definitionData, setDefinitionData] = useState([]);
   const [usageData, setUsageData] = useState([]);
+  const [introductionData, setIntroductionData] = useState([]);
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -102,7 +103,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
-              <Route path='/introduction' element={<IntroductionPage />} />
+              <Route path='/introduction' element={<IntroductionPage data={introductionData} />} />
               <Route path='/figures/:id' element={<Figure definitions={definitionData} usages={usageData} onUpdateDefinition={handleUpdateDefinition} onUpdateUsage={handleUpdateUsage} />} />
             </Routes>
           </main>
