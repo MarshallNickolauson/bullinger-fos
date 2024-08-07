@@ -42,6 +42,8 @@ export default function TopNavbar() {
                             <ul className="nav-list">
                                 <li className="nav-item"><Link to="/" onClick={closeNav}>Home</Link></li>
                                 <li className="nav-item"><Link to="/about" onClick={closeNav}>About</Link></li>
+                                <li className="nav-item sql-button">Import Data</li>
+                                <li className="nav-item sql-button">Export Data</li>
                             </ul>
 
                             {/* <div className="search-bar">
