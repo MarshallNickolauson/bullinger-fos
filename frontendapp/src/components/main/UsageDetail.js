@@ -7,6 +7,7 @@ export default function UsageDetail({ record, onContentUpdate }) {
     const [isEditing, setIsEditing] = useState(false);
     const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
     const [editableContent, setEditableContent] = useState('');
+    const [tempEditableContent, setTempEditableContent] = useState('');
     const [editableRules, setEditableRules] = useState('');
 
     const scrollToTop = () => {
@@ -18,6 +19,7 @@ export default function UsageDetail({ record, onContentUpdate }) {
             setEditableContent('');
         } else {
             setEditableContent(record['content']);
+            setTempEditableContent(record['content']);
         }
         setEditableRules(record['custom_rules']);
     }, [record]);
@@ -68,6 +70,7 @@ export default function UsageDetail({ record, onContentUpdate }) {
 
     const handleCloseEdit = () => {
         setIsEditing(false);
+        setTempEditableContent(editableContent);
     }
 
     const handleRuleClick = (event) => {
@@ -91,7 +94,7 @@ export default function UsageDetail({ record, onContentUpdate }) {
                 "id": id,
                 "book_position": record['book_position'],
                 "figure_name": record['figure_name'],
-                "content": editableContent,
+                "content": tempEditableContent,
                 "custom_rules": editableRules == '' ? '[]' : editableRules,
             }),
         }).then(response => {
@@ -134,13 +137,13 @@ export default function UsageDetail({ record, onContentUpdate }) {
                 </div>
 
                 {/* Usage Card */}
-                <div className="content-card usage-card container">
+                <div className="content-card usage-card">
                     {isEditing ? (
                         <div className='content expanded'>
                             <textarea
                                 className='content-edit-box'
-                                value={editableContent}
-                                onChange={(e) => setEditableContent(e.target.value)}
+                                value={tempEditableContent}
+                                onChange={(e) => setTempEditableContent(e.target.value)}
                                 rows={20}
                             />
                         </div>

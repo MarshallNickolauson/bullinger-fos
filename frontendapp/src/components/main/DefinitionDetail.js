@@ -9,6 +9,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
     const [isEditing, setIsEditing] = useState(false);
     const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
     const [editableContent, setEditableContent] = useState('');
+    const [tempEditableContent, setTempEditableContent] = useState('');
     const [editableRules, setEditableRules] = useState('');
 
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
     useEffect(() => {
         setEditableContent(record['content']);
+        setTempEditableContent(record['content']);
         setEditableRules(record['custom_rules']);
     }, [record]);
 
@@ -89,6 +91,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
 
     const handleCloseEdit = () => {
         setIsEditing(false);
+        setTempEditableContent(editableContent);
         setDefinitionExpand(true);
         scrollToTop();
     }
@@ -114,7 +117,7 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                 "id": id,
                 "book_position": record['book_position'],
                 "figure_name": record['figure_name'],
-                "content": editableContent,
+                "content": tempEditableContent,
                 "custom_rules": editableRules == '' ? '[]' : editableRules,
             }),
         }).then(response => {
@@ -226,8 +229,8 @@ export default function DefinitionDetail({ record, isDefinitionExpanded, toggleD
                         <div className='content expanded'>
                             <textarea
                                 className='content-edit-box'
-                                value={editableContent}
-                                onChange={(e) => setEditableContent(e.target.value)}
+                                value={tempEditableContent}
+                                onChange={(e) => setTempEditableContent(e.target.value)}
                                 rows={15}
                             />
                         </div>

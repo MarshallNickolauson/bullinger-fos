@@ -12,7 +12,7 @@ import IntroductionPage from './components/main/IntroductionPage';
 function App() {
   const [definitionData, setDefinitionData] = useState([]);
   const [usageData, setUsageData] = useState([]);
-  const [introductionData, setIntroductionData] = useState([]);
+  const [introductionData, setIntroductionData] = useState('');
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -34,8 +34,23 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const introductionApiEndpoint = `${config.apiBaseUrl}/introduction`
     const definitionApiEndpoint = `${config.apiBaseUrl}/definitions`;
     const usageApiEndpoint = `${config.apiBaseUrl}/usages`;
+
+    const fetchIntroduction = fetch(introductionApiEndpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(response => {
+      if (!response.ok) {
+        return response.json().then(error => {
+          throw new Error(`Failed to get introduction: ${JSON.stringify(error)}`)
+        })
+      }
+      return response.json();
+    })
 
     const fetchDefinitions = fetch(definitionApiEndpoint, {
       method: 'GET',
@@ -45,7 +60,7 @@ function App() {
     }).then(response => {
       if (!response.ok) {
         return response.json().then(error => {
-          throw new Error(`Failed to get content: ${JSON.stringify(error)}`)
+          throw new Error(`Failed to get definitions: ${JSON.stringify(error)}`)
         });
       }
       return response.json();
@@ -59,14 +74,15 @@ function App() {
     }).then(response => {
       if (!response.ok) {
         return response.json().then(error => {
-          throw new Error(`Failed to get content: ${JSON.stringify(error)}`)
+          throw new Error(`Failed to get usages: ${JSON.stringify(error)}`)
         });
       }
       return response.json();
     });
 
-    Promise.all([fetchDefinitions, fetchUsages])
-      .then(([definitions, usages]) => {
+    Promise.all([fetchIntroduction, fetchDefinitions, fetchUsages])
+      .then(([introduction, definitions, usages]) => {
+        setIntroductionData(introduction[0].content)
         setDefinitionData(definitions);
         setUsageData(usages);
       })
@@ -74,6 +90,10 @@ function App() {
         console.error('Error getting content: ', e);
       });
   }, []);
+
+  const handleUpdateIntroduction = (updatedIntroduction) => {
+    setIntroductionData(updatedIntroduction);
+  };
 
   const handleUpdateDefinition = (updatedDefinition) => {
     setDefinitionData((prevDefinitions) =>
@@ -103,7 +123,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
-              <Route path='/introduction' element={<IntroductionPage data={introductionData} />} />
+              <Route path='/introduction' element={<IntroductionPage data={introductionData} onIntroductionUpdate={handleUpdateIntroduction} />} />
               <Route path='/figures/:id' element={<Figure definitions={definitionData} usages={usageData} onUpdateDefinition={handleUpdateDefinition} onUpdateUsage={handleUpdateUsage} />} />
             </Routes>
           </main>
