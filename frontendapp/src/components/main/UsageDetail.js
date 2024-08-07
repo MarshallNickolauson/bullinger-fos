@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import config from '../../config/config';
 
-export default function UsageDetil({ record, onContentUpdate }) {
+export default function UsageDetail({ record, onContentUpdate }) {
     const id = record['id'];
 
     const [isEditing, setIsEditing] = useState(false);
